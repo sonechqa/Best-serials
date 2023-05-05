@@ -21,3 +21,4 @@ Route::post('add', [\App\Http\Controllers\SerialsController::class, 'store'])->n
 Route::post('update', [\App\Http\Controllers\SerialsController::class, 'update']);
 Route::post('genres', [\App\Http\Controllers\GenresController::class, 'getGenres']);
 Route::post('countries', [\App\Http\Controllers\CountriesController::class, 'getCountries']);
+Route::post('deleteSerial', [\App\Http\Controllers\SerialsController::class, 'deleteSerial']);

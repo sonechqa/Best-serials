@@ -11,8 +11,8 @@ const form = reactive({
     Directors: null,
     Rating: null,
     ReleaseYears: null,
-    Genres: null,
-    Countries: null,
+    Genres: [],
+    Countries: [],
 });
 
 function submit() {

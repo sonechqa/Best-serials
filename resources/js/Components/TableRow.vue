@@ -21,7 +21,14 @@
         <td>
             <SelectCountries v-model="Countries"></SelectCountries>
         </td>
-        <button type="button" class="save" @click="saveData">Сохранить</button>
+        <div class="buttons">
+            <button type="button" class="save" @click="saveData">
+                Сохранить
+            </button>
+            <button type="button" class="delete" @click="deleteSerial">
+                Удалить сериал
+            </button>
+        </div>
     </tr>
 </template>
 
@@ -47,7 +54,7 @@ export default {
             Rating: this.serial.Rating,
             ReleaseYears: this.serial.ReleaseYears,
             Genres: this.serial.genres,
-            Countries: this.serial.Countries,
+            Countries: this.serial.countries,
         };
     },
     methods: {
@@ -61,6 +68,12 @@ export default {
                 ReleaseYears: this.ReleaseYears,
                 Genres: this.Genres.map((genre) => genre.id),
                 Countries: this.Countries.map((country) => country.id),
+            });
+        },
+
+        deleteSerial() {
+            router.post("/deleteSerial", {
+                id: this.serial.id,
             });
         },
     },
@@ -84,13 +97,26 @@ textarea {
     width: 120px;
 }
 
-.save {
+.buttons {
+    display: flex;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.save {
     margin-left: 10px;
-    padding: 10px 5px;
+    padding: 5px;
     background-color: rgb(83, 184, 221);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete {
+    margin-left: 10px;
+    padding: 10px;
+    background-color: rgb(58, 198, 62);
     border: none;
     border-radius: 5px;
     cursor: pointer;

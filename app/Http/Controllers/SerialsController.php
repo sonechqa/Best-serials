@@ -10,7 +10,7 @@ class SerialsController extends Controller
 {
     public function serials() {
         return Inertia::render('AddSerial', [
-            'serials' => Serials::with('genres')->get(),
+            'serials' => Serials::with('genres', 'countries')->get(),
         ]);
     }
 
@@ -41,5 +41,9 @@ class SerialsController extends Controller
         ));
         $serial->genres()->sync($req->get('Genres'));
         $serial->countries()->sync($req->get('Countries'));
+    }
+
+    public function deleteSerial(Request $req) {
+        $serial = Serials::where('id', $req->get('id'))->delete();
     }
 }
