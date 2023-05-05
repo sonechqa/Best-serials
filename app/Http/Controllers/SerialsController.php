@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Serials;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+class SerialsController extends Controller
+{
+    public function serials() {
+        return Inertia::render('AddSerial', [
+            'serials' => Serials::with('genres')->get(),
+        ]);
+    }
+
+    public function store(Request $req)
+    {
+        $serial = Serials::create($req->validate([
+            'Name' => ['required'],
+            'Description' => ['required'],
+            'Directors' => ['required'],
+            'Rating' => ['required'],
+            'ReleaseYears' => ['required'],
+          ]));
+
+        $serial->genres()->attach($req->get('Genres'));
+        $serial->countries()->attach($req->get('Countries'));
+
+        return to_route('add');
+    }
+
+    public function update(Request $req) {
+        $serial = Serials::where('id', $req->get('id'))->first();
+        $serial->update(
+            array('Name' => $req->get('Name'),
+            'Description' => $req->get('Description'),
+            'Directors' => $req->get('Directors'),
+            'Rating' => $req->get('Rating'),
+            'ReleaseYears' => $req->get('ReleaseYears'),
+        ));
+        $serial->genres()->sync($req->get('Genres'));
+        $serial->countries()->sync($req->get('Countries'));
+    }
+}
