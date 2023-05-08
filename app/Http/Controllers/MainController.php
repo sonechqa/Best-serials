@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
+use App\Models\Serials;
 
 class MainController extends Controller
 {
     public function home() {
-        return Inertia::render('Home', []);
+        return Inertia::render('Home', [
+            'serials' => Serials::with('genres', 'countries')->get(),
+        ]);
     }
 
     public function profile() {

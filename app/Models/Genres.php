@@ -11,6 +11,7 @@ class Genres extends Model
     use HasFactory;
     protected $table = 'genres';
     protected $fillable = ['Name'];
+    public $timestamps = false;
 
     public function serials() {
         return $this->belongsToMany(Serials::class);

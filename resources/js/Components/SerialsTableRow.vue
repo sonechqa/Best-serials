@@ -22,10 +22,10 @@
             <SelectCountries v-model="Countries"></SelectCountries>
         </td>
         <div class="buttons">
-            <button type="button" class="save" @click="saveData">
+            <button type="button" class="saveSerial" @click="saveData">
                 Сохранить
             </button>
-            <button type="button" class="delete" @click="deleteSerial">
+            <button type="button" class="deleteSerial" @click="deleteSerial">
                 Удалить сериал
             </button>
         </div>
@@ -34,11 +34,11 @@
 
 <script>
 import { router } from "@inertiajs/vue3";
-import SelectGenres from "../Components/SelectGenres.vue";
-import SelectCountries from "../Components/SelectCountries.vue";
+import SelectGenres from "./SelectGenres.vue";
+import SelectCountries from "./SelectCountries.vue";
 
 export default {
-    name: "TableRow",
+    name: "SerialsTableRow",
     components: {
         SelectGenres,
         SelectCountries,
@@ -85,6 +85,11 @@ tr {
     position: relative;
 }
 
+td {
+    padding: 3px;
+    border: 1px solid black;
+}
+
 textarea {
     resize: none;
 }
@@ -104,7 +109,7 @@ textarea {
     transform: translateY(-50%);
 }
 
-.save {
+.saveSerial {
     margin-left: 10px;
     padding: 5px;
     background-color: rgb(83, 184, 221);
@@ -113,7 +118,7 @@ textarea {
     cursor: pointer;
 }
 
-.delete {
+.deleteSerial {
     margin-left: 10px;
     padding: 10px;
     background-color: rgb(58, 198, 62);

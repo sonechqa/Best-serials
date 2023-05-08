@@ -11,6 +11,7 @@ class Countries extends Model
     use HasFactory;
     protected $table = 'countries';
     protected $fillable = ['Name'];
+    public $timestamps = false;
 
     public function serials() {
         return $this->belongsToMany(Serials::class);

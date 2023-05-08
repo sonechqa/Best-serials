@@ -19,7 +19,7 @@ function submit() {
     const newForm = { ...form };
     newForm.Genres = form.Genres.map((genre) => genre.id);
     newForm.Countries = form.Countries.map((country) => country.id);
-    router.post("/add", newForm);
+    router.post("/addSerial", newForm);
 }
 
 defineProps({
@@ -70,7 +70,7 @@ defineProps({
     <ExistingSerials :serials="serials"></ExistingSerials>
 </template>
 
-<style>
+<style scoped>
 h1 {
     text-align: center;
 }

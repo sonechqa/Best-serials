@@ -27,7 +27,7 @@ class SerialsController extends Controller
         $serial->genres()->attach($req->get('Genres'));
         $serial->countries()->attach($req->get('Countries'));
 
-        return to_route('add');
+        return to_route('addSerial');
     }
 
     public function update(Request $req) {

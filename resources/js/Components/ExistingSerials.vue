@@ -13,21 +13,22 @@
             </tr>
         </thead>
         <tbody>
-            <TableRow
+            <SerialsTableRow
                 v-for="serial in serials"
                 :key="serial.id"
                 :serial="serial"
-            ></TableRow>
+            ></SerialsTableRow>
         </tbody>
     </table>
 </template>
 
 <script>
-import TableRow from "./TableRow.vue";
+import SerialsTableRow from "./SerialsTableRow.vue";
 
 export default {
+    name: "ExistingSerials",
     components: {
-        TableRow,
+        SerialsTableRow,
     },
     props: {
         serials: Array,
@@ -43,7 +44,6 @@ table {
     margin-left: 40px;
 }
 
-td,
 th {
     padding: 3px;
     border: 1px solid black;

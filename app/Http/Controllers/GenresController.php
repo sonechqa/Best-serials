@@ -13,4 +13,26 @@ class GenresController extends Controller
         $genres = Genres::where('Name', 'LIKE', $input.'%')->get();
         return $genres;
     }
+
+    public function renderGenres() {
+        return Inertia::render('AddGenre', [
+            'genres' => Genres::all(),
+        ]);
+    }
+
+    public function addGenres(Request $req) {
+        $genre = Genres::create($req->validate([
+            'Name' => ['required'],
+        ]));
+        return to_route('addGenre');
+    }
+
+    public function updateGenre(Request $req) {
+        $genre = Genres::where('id', $req->get('id'))->first();
+        $genre->update(array('Name' => $req->get('Name')));
+    }
+
+    public function deleteGenre(Request $req) {
+        $genre = Genres::where('id', $req->get('id'))->delete();
+    }
 }
