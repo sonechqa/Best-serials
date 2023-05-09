@@ -6,6 +6,7 @@ import SelectGenres from "../Components/SelectGenres.vue";
 import SelectCountries from "../Components/SelectCountries.vue";
 
 const form = reactive({
+    Poster: null,
     Name: null,
     Description: null,
     Directors: null,
@@ -33,6 +34,10 @@ defineProps({
         <div class="wrapperFor">
             <label for="Name">Название: </label>
             <input type="text" id="Name" v-model="form.Name" />
+        </div>
+        <div class="wrapperFor">
+            <label for="Poster">Постер: </label>
+            <input type="text" id="Poster" v-model="form.Poster" />
         </div>
         <div class="wrapperFor">
             <label for="Description">Описание: </label>

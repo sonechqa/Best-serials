@@ -1,9 +1,10 @@
 <template>
-    <h1>Заметили ошибку? Нажмите на ячейку и исправьте!</h1>
+    <h2>Заметили ошибку? Нажмите на ячейку и исправьте!</h2>
     <table>
         <thead>
             <tr>
                 <th>Название</th>
+                <th>Постер</th>
                 <th>Описание</th>
                 <th>Режиссёры</th>
                 <th>Рейтинг</th>
@@ -37,6 +38,10 @@ export default {
 </script>
 
 <style>
+h2 {
+    text-align: center;
+}
+
 table {
     border-collapse: collapse;
     margin-top: 30px;

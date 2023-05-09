@@ -11,7 +11,7 @@ class Serials extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = 'serials';
-    protected $fillable = ['Name', 'Description', 'Directors', 'Rating', 'ReleaseYears'];
+    protected $fillable = ['Name', 'Description', 'Directors', 'Rating', 'ReleaseYears', 'Poster'];
 
     public function genres() {
         return $this->belongsToMany(Genres::class);

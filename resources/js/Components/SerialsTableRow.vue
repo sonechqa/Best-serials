@@ -4,7 +4,11 @@
             <input type="text" v-model="Name" />
         </td>
         <td>
-            <textarea cols="60" rows="5" v-model="Description"></textarea>
+            <img :src="Poster" alt="Постер сериала" />
+            <input type="text" v-model="Poster" />
+        </td>
+        <td>
+            <textarea cols="50" rows="7" v-model="Description"></textarea>
         </td>
         <td>
             <textarea rows="5" v-model="Directors"></textarea>
@@ -49,6 +53,7 @@ export default {
     data() {
         return {
             Name: this.serial.Name,
+            Poster: this.serial.Poster,
             Description: this.serial.Description,
             Directors: this.serial.Directors,
             Rating: this.serial.Rating,
@@ -62,6 +67,7 @@ export default {
             router.post("/update", {
                 id: this.serial.id,
                 Name: this.Name,
+                Poster: this.Poster,
                 Description: this.Description,
                 Directors: this.Directors,
                 Rating: this.Rating,
@@ -88,6 +94,12 @@ tr {
 td {
     padding: 3px;
     border: 1px solid black;
+    text-align: center;
+}
+
+img {
+    width: 80px;
+    height: 120px;
 }
 
 textarea {
@@ -95,11 +107,11 @@ textarea {
 }
 
 .rating {
-    width: 80px;
+    width: 60px;
 }
 
 .years {
-    width: 120px;
+    width: 100px;
 }
 
 .buttons {

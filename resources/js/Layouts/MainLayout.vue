@@ -8,8 +8,8 @@
                 <Link href="/addCountry" class="link"> Добавить страну </Link>
             </div>
         </header>
-        <article class="mt-10">
-            <div class="mb-5"></div>
+        <article>
+            <div></div>
             <slot />
         </article>
     </main>
@@ -23,11 +23,19 @@ import Header from "../Pages/Header.vue";
 <style scoped>
 .links {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .link {
     text-decoration: none;
+    font-family: Roboto;
+    color: black;
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: rgb(43, 35, 35);
+    transition: color 0.3s;
 }
 
 .link:not(:last-child) {

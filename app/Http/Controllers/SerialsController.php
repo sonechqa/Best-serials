@@ -18,6 +18,7 @@ class SerialsController extends Controller
     {
         $serial = Serials::create($req->validate([
             'Name' => ['required'],
+            'Poster' => ['required'],
             'Description' => ['required'],
             'Directors' => ['required'],
             'Rating' => ['required'],
@@ -34,6 +35,7 @@ class SerialsController extends Controller
         $serial = Serials::where('id', $req->get('id'))->first();
         $serial->update(
             array('Name' => $req->get('Name'),
+            'Poster' => $req->get('Poster'),
             'Description' => $req->get('Description'),
             'Directors' => $req->get('Directors'),
             'Rating' => $req->get('Rating'),
