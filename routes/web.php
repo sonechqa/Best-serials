@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// тестовые
+// главная страница
 Route::get('/', [\App\Http\Controllers\MainController::class, 'home']);
+//тестовые
 Route::get('profile', [\App\Http\Controllers\MainController::class, 'profile']);
 Route::get('project', [\App\Http\Controllers\ProjectController::class, 'project']);
 // сериалы

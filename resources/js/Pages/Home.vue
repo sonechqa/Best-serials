@@ -1,6 +1,7 @@
 <template>
-    <MainLayout></MainLayout>
-    <SerialsOnMain :serials="serials"></SerialsOnMain>
+    <MainLayout>
+        <SerialsOnMain :serials="serials" :genres="genres"></SerialsOnMain>
+    </MainLayout>
 </template>
 
 <script>
@@ -15,6 +16,7 @@ export default {
     },
     props: {
         serials: Array,
+        genres: Array,
     },
 };
 </script>
