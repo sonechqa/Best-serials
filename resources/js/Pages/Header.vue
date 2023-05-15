@@ -7,10 +7,24 @@
             <input
                 type="text"
                 placeholder="Поиск сериалов"
+                v-model="inputValue"
                 class="header__input"
+                @focus="showVariants"
+                @blur="hideVariants"
+                @input="getSuggestedSerials"
             />
             <button type="submit" class="header__button"></button>
         </form>
+        <div v-show="variantsVisibility && suggestedSerials.length > 0">
+            <ul>
+                <li
+                    v-for="suggestedSerial in suggestedSerials"
+                    :key="suggestedSerial"
+                >
+                    {{ suggestedSerial.Name }}
+                </li>
+            </ul>
+        </div>
         <div class="header__profile">
             <a href="/profile">
                 <img src="../../images/user.png" alt="" class="header__user" />
@@ -20,8 +34,39 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: "Header",
+    data() {
+        return {
+            inputValue: "",
+            variantsVisibility: false,
+            suggestedSerials: [],
+        };
+    },
+    methods: {
+        showVariants() {
+            this.variantsVisibility = true;
+        },
+        hideVariants() {
+            setTimeout(() => {
+                this.variantsVisibility = false;
+            }, 50);
+        },
+        getSuggestedSerials() {
+            axios
+                .post("/getSerial", {
+                    input: this.inputValue,
+                })
+                .then((res) => {
+                    this.suggestedSerials = res.data;
+                    if (this.inputValue === "") {
+                        this.suggestedSerials = [];
+                    }
+                });
+        },
+    },
 };
 </script>
 

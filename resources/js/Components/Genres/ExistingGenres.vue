@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import GenresTableRow from "../Components/GenresTableRow.vue";
+import GenresTableRow from "./GenresTableRow.vue";
 
 export default {
     name: "ExistingGenres",

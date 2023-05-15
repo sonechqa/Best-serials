@@ -1,9 +1,9 @@
 <script setup>
 import { reactive } from "vue";
 import { router } from "@inertiajs/vue3";
-import ExistingSerials from "../Components/ExistingSerials.vue";
-import SelectGenres from "../Components/SelectGenres.vue";
-import SelectCountries from "../Components/SelectCountries.vue";
+import ExistingSerials from "../Components/Serials/ExistingSerials.vue";
+import SelectGenres from "../Components/Genres/SelectGenres.vue";
+import SelectCountries from "../Components/Countries/SelectCountries.vue";
 
 const form = reactive({
     Poster: null,

@@ -12,7 +12,7 @@
 
 <script>
 import axios from "axios";
-import ExistingCountries from "../Components/ExistingCountries.vue";
+import ExistingCountries from "../Components/Countries/ExistingCountries.vue";
 
 export default {
     name: "AddCountry",

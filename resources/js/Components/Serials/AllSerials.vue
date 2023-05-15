@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import GenresFilter from "./GenresFilter.vue";
-import CountriesFilter from "./CountriesFilter.vue";
+import GenresFilter from "../Genres/GenresFilter.vue";
+import CountriesFilter from "../Countries/CountriesFilter.vue";
 import SerialsOnMain from "./SerialsOnMain.vue";
 import { router } from "@inertiajs/vue3";
 

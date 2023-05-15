@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import CountriesTableRow from "../Components/CountriesTableRow.vue";
+import CountriesTableRow from "./CountriesTableRow.vue";
 
 export default {
     name: "ExistingCountries",

@@ -48,4 +48,16 @@ class SerialsController extends Controller
     public function deleteSerial(Request $req) {
         $serial = Serials::where('id', $req->get('id'))->delete();
     }
+
+    public function showSerialPage(string $id) {
+        return Inertia::render('OneSerial', [
+            'serial' => Serials::where('id', $id)->with('genres', 'countries')->first(),
+        ]);
+    }
+
+    public function getSerial(Request $req) {
+        $input = $req->get('input');
+        $serials = Serials::where('Name', 'LIKE', $input.'%')->get();
+        return $serials;
+    }
 }

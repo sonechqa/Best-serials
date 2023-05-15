@@ -1,8 +1,10 @@
 <template>
     <div class="serials" v-for="serial in serials" :key="serial.id">
-        <img :src="serial.Poster" alt="Постер фильма" />
+        <img :src="serial.Poster" alt="Постер сериала" />
         <div class="properties">
-            <h3>{{ serial.Name }}</h3>
+            <a :href="'/serials/' + serial.id">
+                <h3>{{ serial.Name }}</h3>
+            </a>
             <div class="countries">
                 <div
                     v-for="(country, index) in serial.countries"
@@ -72,6 +74,7 @@ img {
 
 h3 {
     margin-top: 0;
+    color: black;
 }
 
 .countries {
@@ -100,7 +103,7 @@ span {
 }
 
 .green_rating {
-    background-color: green;
+    background-color: rgb(4, 150, 4);
 }
 
 .red_rating {

@@ -38,8 +38,8 @@
 
 <script>
 import { router } from "@inertiajs/vue3";
-import SelectGenres from "./SelectGenres.vue";
-import SelectCountries from "./SelectCountries.vue";
+import SelectGenres from "../Genres/SelectGenres.vue";
+import SelectCountries from "../Countries/SelectCountries.vue";
 
 export default {
     name: "SerialsTableRow",

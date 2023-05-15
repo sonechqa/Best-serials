@@ -6,13 +6,13 @@
             :countries="countries"
             :selectedGenres="selectedGenres"
             :selectedCountries="selectedCountries"
-        ></AllSerials>
+        />
     </MainLayout>
 </template>
 
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
-import AllSerials from "../Components/AllSerials.vue";
+import AllSerials from "../Components/Serials/AllSerials.vue";
 
 export default {
     name: "Home",

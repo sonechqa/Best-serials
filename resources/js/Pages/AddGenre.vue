@@ -12,7 +12,7 @@
 
 <script>
 import axios from "axios";
-import ExistingGenres from "../Components/ExistingGenres.vue";
+import ExistingGenres from "../Components/Genres/ExistingGenres.vue";
 
 export default {
     name: "AddGenre",
