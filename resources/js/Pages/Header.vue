@@ -3,27 +3,34 @@
         <h1 class="header__title">
             <a href="/" class="header__link">Лучшие сериалы</a>
         </h1>
-        <form class="header__form">
-            <input
-                type="text"
-                placeholder="Поиск сериалов"
-                v-model="inputValue"
-                class="header__input"
-                @focus="showVariants"
-                @blur="hideVariants"
-                @input="getSuggestedSerials"
-            />
-            <button type="submit" class="header__button"></button>
-        </form>
-        <div v-show="variantsVisibility && suggestedSerials.length > 0">
-            <ul>
-                <li
-                    v-for="suggestedSerial in suggestedSerials"
-                    :key="suggestedSerial"
-                >
-                    {{ suggestedSerial.Name }}
-                </li>
-            </ul>
+        <div class="header__search">
+            <form class="header__form" @sumbit.prevent="searchSerials">
+                <input
+                    type="text"
+                    placeholder="Поиск сериалов"
+                    v-model="inputValue"
+                    class="header__input"
+                    @focus="showVariants"
+                    @blur="hideVariants"
+                    @input="getSuggestedSerials"
+                />
+                <button type="submit" class="header__button"></button>
+            </form>
+            <div
+                class="header__wrapper"
+                v-show="variantsVisibility && suggestedSerials.length > 0"
+            >
+                <ul class="header__variants">
+                    <li
+                        v-for="(suggestedSerial, index) in suggestedSerials"
+                        :key="suggestedSerial.id"
+                        class="header__variant"
+                        @click="() => showSerial(index)"
+                    >
+                        {{ suggestedSerial.Name }}
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="header__profile">
             <a href="/profile">
@@ -35,6 +42,7 @@
 
 <script>
 import axios from "axios";
+import { router } from "@inertiajs/vue3";
 
 export default {
     name: "Header",
@@ -66,6 +74,11 @@ export default {
                     }
                 });
         },
+        showSerial(index) {
+            const id = this.suggestedSerials[index].id;
+            router.get("/serials/" + id, {}, { replace: true });
+        },
+        searchSerials() {},
     },
 };
 </script>
@@ -87,6 +100,10 @@ export default {
 .header__link {
     text-decoration: none;
     color: white;
+}
+
+.header__search {
+    position: relative;
 }
 
 .header__form {
@@ -119,6 +136,27 @@ export default {
     margin: 0;
     border-radius: inherit;
     border: 1px solid transparent;
+}
+
+.header__wrapper {
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 5px;
+    position: absolute;
+    width: 100%;
+}
+
+.header__variants {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.header__variant {
+    list-style-type: none;
+    cursor: pointer;
+    padding-top: 10px;
 }
 
 .header__profile {
