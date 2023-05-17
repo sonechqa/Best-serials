@@ -45,8 +45,6 @@ export default {
     name: "SerialsOnMain",
     props: {
         serials: Array,
-        genres: Array,
-        countries: Array,
     },
 };
 </script>

@@ -4,7 +4,7 @@
             <a href="/" class="header__link">Лучшие сериалы</a>
         </h1>
         <div class="header__search">
-            <form class="header__form" @sumbit.prevent="searchSerials">
+            <form class="header__form" @submit.prevent="searchSerials">
                 <input
                     type="text"
                     placeholder="Поиск сериалов"
@@ -78,7 +78,13 @@ export default {
             const id = this.suggestedSerials[index].id;
             router.get("/serials/" + id, {}, { replace: true });
         },
-        searchSerials() {},
+        searchSerials() {
+            router.get(
+                "/search",
+                { search: this.inputValue },
+                { replace: true }
+            );
+        },
     },
 };
 </script>

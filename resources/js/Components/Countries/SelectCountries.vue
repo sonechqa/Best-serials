@@ -13,7 +13,7 @@
                         @click="() => deleteCountry(index)"
                     >
                         <img
-                            src="../../images/close.png"
+                            src="../../../images/close.png"
                             alt="Крестик для удаления"
                             class="cross"
                         />

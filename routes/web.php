@@ -25,6 +25,7 @@ Route::post('update', [\App\Http\Controllers\SerialsController::class, 'update']
 Route::post('deleteSerial', [\App\Http\Controllers\SerialsController::class, 'deleteSerial']);
 Route::get('serials/{id}', [\App\Http\Controllers\SerialsController::class, 'showSerialPage']);
 Route::post('getSerial', [\App\Http\Controllers\SerialsController::class, 'getSerial']);
+Route::get('search', [\App\Http\Controllers\SearchController::class, 'search']);
 // жанры
 Route::get('addGenre', [\App\Http\Controllers\GenresController::class, 'renderGenres']);
 Route::post('addGenre', [\App\Http\Controllers\GenresController::class, 'addGenres'])->name('addGenre');

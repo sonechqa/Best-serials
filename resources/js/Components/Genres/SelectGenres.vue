@@ -10,7 +10,7 @@
                     <div class="genreName">{{ selectedGenre.Name }}</div>
                     <div class="deleteGenre" @click="() => deleteGenre(index)">
                         <img
-                            src="../../images/close.png"
+                            src="../../../images/close.png"
                             alt="Крестик для удаления"
                             class="cross"
                         />
