@@ -32,11 +32,15 @@
                 </ul>
             </div>
         </div>
-        <div class="header__profile">
+        <div class="header__register">
+            <a href="/logIn" class="header__logIn">Войти</a>
+            <a href="/register" class="header__signUp">Зарегистрироваться</a>
+        </div>
+        <!-- <div class="header__profile">
             <a href="/profile">
                 <img src="../../images/user.png" alt="" class="header__user" />
             </a>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -163,6 +167,17 @@ export default {
     list-style-type: none;
     cursor: pointer;
     padding-top: 10px;
+}
+
+.header__logIn {
+    color: white;
+    text-decoration: none;
+    margin-right: 30px;
+}
+
+.header__signUp {
+    color: white;
+    text-decoration: none;
 }
 
 .header__profile {

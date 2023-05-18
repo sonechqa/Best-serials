@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // главная страница
-Route::get('/', [\App\Http\Controllers\MainController::class, 'home']);
-//тестовые
+Route::get('/', [\App\Http\Controllers\MainController::class, 'home'])->name('home');
+// тестовые
 Route::get('profile', [\App\Http\Controllers\MainController::class, 'profile']);
 Route::get('project', [\App\Http\Controllers\ProjectController::class, 'project']);
 // сериалы
@@ -32,9 +32,14 @@ Route::post('addGenre', [\App\Http\Controllers\GenresController::class, 'addGenr
 Route::post('updateGenre', [\App\Http\Controllers\GenresController::class, 'updateGenre']);
 Route::post('deleteGenre', [\App\Http\Controllers\GenresController::class, 'deleteGenre']);
 Route::post('genres', [\App\Http\Controllers\GenresController::class, 'getGenres']);
-//страны
+// страны
 Route::get('addCountry', [\App\Http\Controllers\CountriesController::class, 'renderCountries']);
 Route::post('addCountry', [\App\Http\Controllers\CountriesController::class, 'addCountries'])->name('addCountry');
 Route::post('updateCountry', [\App\Http\Controllers\CountriesController::class, 'updateCountry']);
 Route::post('deleteCountry', [\App\Http\Controllers\CountriesController::class, 'deleteCountry']);
 Route::post('countries', [\App\Http\Controllers\CountriesController::class, 'getCountries']);
+// вход
+Route::get('logIn', [\App\Http\Controllers\LogInController::class, 'logIn']);
+// регистрация
+Route::get('register', [\App\Http\Controllers\RegisterController::class, 'register']);
+Route::post('register', [\App\Http\Controllers\RegisterController::class, 'addUser'])->name('register');
