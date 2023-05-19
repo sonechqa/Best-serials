@@ -17,7 +17,7 @@
                         v-model="form.password"
                     />
                 </div>
-                <button type="button">Войти</button>
+                <button type="submit">Войти</button>
             </form>
         </div>
     </MainLayout>
@@ -25,6 +25,7 @@
 
 <script>
 import MainLayout from "../Layouts/MainLayout.vue";
+import axios from "axios";
 import { router } from "@inertiajs/vue3";
 
 export default {
@@ -40,11 +41,13 @@ export default {
             },
         };
     },
-    // methods: {
-    //     sendDataToLogIn() {
-    //         router.post("/logIn", this.form);
-    //     },
-    // },
+    methods: {
+        sendDataToLogIn() {
+            axios.post("/logIn", this.form).then(() => {
+                router.get("/");
+            });
+        },
+    },
 };
 </script>
 

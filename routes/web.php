@@ -39,7 +39,8 @@ Route::post('updateCountry', [\App\Http\Controllers\CountriesController::class, 
 Route::post('deleteCountry', [\App\Http\Controllers\CountriesController::class, 'deleteCountry']);
 Route::post('countries', [\App\Http\Controllers\CountriesController::class, 'getCountries']);
 // вход
-Route::get('logIn', [\App\Http\Controllers\LogInController::class, 'logIn']);
+Route::get('logIn', [\App\Http\Controllers\LogInController::class, 'renderLogIn']);
+Route::post('logIn', [\App\Http\Controllers\LogInController::class, 'logInUser']);
 // регистрация
 Route::get('register', [\App\Http\Controllers\RegisterController::class, 'register']);
 Route::post('register', [\App\Http\Controllers\RegisterController::class, 'addUser'])->name('register');

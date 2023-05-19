@@ -35,6 +35,7 @@
 
 <script>
 import MainLayout from "../Layouts/MainLayout.vue";
+import axios from "axios";
 import { router } from "@inertiajs/vue3";
 
 export default {
@@ -54,7 +55,9 @@ export default {
     },
     methods: {
         registerUser() {
-            router.post("/register", this.form);
+            axios.post("/register", this.form).then(() => {
+                router.get("/");
+            });
         },
     },
 };

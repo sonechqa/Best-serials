@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -13,11 +14,16 @@ class RegisterController extends Controller
     }
 
     public function addUser(Request $req) {
-        $user = User::create($req->validate([
+        $req->validate([
             'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required'],
-        ]));
-        return to_route('home');
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'min:6', 'confirmed'],
+        ]);
+
+        $user = User::create([
+            'name' => $req->name,
+            'email' => $req->email,
+            'password' => Hash::make($req->password),
+        ]);
     }
 }
