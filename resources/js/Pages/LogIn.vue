@@ -10,12 +10,17 @@
                         v-model="form.email"
                     />
                 </div>
-                <div class="password">
-                    <input
-                        type="password"
-                        placeholder="Пароль"
-                        v-model="form.password"
-                    />
+                <div class="wrapperPassword">
+                    <div class="password">
+                        <input
+                            type="password"
+                            placeholder="Пароль"
+                            v-model="form.password"
+                        />
+                    </div>
+                    <div class="error" v-show="errors.message">
+                        {{ errors.message }}
+                    </div>
                 </div>
                 <button type="submit">Войти</button>
             </form>
@@ -39,13 +44,19 @@ export default {
                 email: "",
                 password: "",
             },
+            errors: "",
         };
     },
     methods: {
         sendDataToLogIn() {
-            axios.post("/logIn", this.form).then(() => {
-                router.get("/");
-            });
+            axios
+                .post("/logIn", this.form)
+                .then(() => {
+                    router.get("/");
+                })
+                .catch((error) => {
+                    this.errors = error.response.data;
+                });
         },
     },
 };
@@ -78,8 +89,13 @@ form {
 }
 
 .login,
-.password {
+.wrapperPassword {
     margin-bottom: 30px;
+}
+
+.error {
+    color: red;
+    margin-top: 5px;
 }
 
 input {

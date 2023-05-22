@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 // главная страница
 Route::get('/', [\App\Http\Controllers\MainController::class, 'home'])->name('home');
 // тестовые
-Route::get('profile', [\App\Http\Controllers\MainController::class, 'profile']);
 Route::get('project', [\App\Http\Controllers\ProjectController::class, 'project']);
 // сериалы
 Route::get('addSerial', [\App\Http\Controllers\SerialsController::class, 'serials']);
@@ -38,9 +37,12 @@ Route::post('addCountry', [\App\Http\Controllers\CountriesController::class, 'ad
 Route::post('updateCountry', [\App\Http\Controllers\CountriesController::class, 'updateCountry']);
 Route::post('deleteCountry', [\App\Http\Controllers\CountriesController::class, 'deleteCountry']);
 Route::post('countries', [\App\Http\Controllers\CountriesController::class, 'getCountries']);
-// вход
+// вход и выход
 Route::get('logIn', [\App\Http\Controllers\LogInController::class, 'renderLogIn']);
 Route::post('logIn', [\App\Http\Controllers\LogInController::class, 'logInUser']);
+Route::post('logout', [\App\Http\Controllers\LogInController::class, 'logout']);
 // регистрация
 Route::get('register', [\App\Http\Controllers\RegisterController::class, 'register']);
 Route::post('register', [\App\Http\Controllers\RegisterController::class, 'addUser'])->name('register');
+// профиль пользователя
+Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'profile']);

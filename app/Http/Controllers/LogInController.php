@@ -22,9 +22,13 @@ class LogInController extends Controller
 
         if(Auth::attempt($req->only('email', 'password'))) {
             return response()->json(Auth::user(), 200);
-        } 
+        }
         throw ValidationException::withMessages([
-            'email' => ['Неверный логин.']
+            'error' => ['Неверный логин или пароль'],
         ]);
+    }
+
+    public function logout() {
+        Auth::logout();
     }
 }

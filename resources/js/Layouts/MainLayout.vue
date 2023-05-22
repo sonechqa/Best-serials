@@ -17,7 +17,7 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import Header from "../Pages/Header.vue";
+import Header from "../Components/Header.vue";
 </script>
 
 <style scoped>

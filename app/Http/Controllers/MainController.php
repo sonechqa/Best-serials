@@ -53,15 +53,4 @@ class MainController extends Controller
             ]);
         }
     }
-
-    public function profile() {
-        $user = new User();
-        $user->name = 'Sonya';
-        $user->email = 'test@email.com';
-
-        return Inertia::render('Profile', [
-            'currentPage' => 'profile',
-            'user' => $user,
-        ]);
-    }
 }

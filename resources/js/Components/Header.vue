@@ -32,15 +32,15 @@
                 </ul>
             </div>
         </div>
-        <div class="header__register">
-            <a href="/logIn" class="header__logIn">Войти</a>
-            <a href="/register" class="header__signUp">Зарегистрироваться</a>
-        </div>
-        <!-- <div class="header__profile">
+        <div class="header__profile" v-if="user.name">
             <a href="/profile">
                 <img src="../../images/user.png" alt="" class="header__user" />
             </a>
-        </div> -->
+        </div>
+        <div class="header__register" v-else>
+            <a href="/logIn" class="header__logIn">Войти</a>
+            <a href="/register" class="header__signUp">Зарегистрироваться</a>
+        </div>
     </div>
 </template>
 
@@ -55,6 +55,7 @@ export default {
             inputValue: "",
             variantsVisibility: false,
             suggestedSerials: [],
+            user: {},
         };
     },
     methods: {
@@ -89,6 +90,11 @@ export default {
                 { replace: true }
             );
         },
+    },
+    mounted() {
+        axios.get("/api/user").then((res) => {
+            this.user = res.data;
+        });
     },
 };
 </script>
