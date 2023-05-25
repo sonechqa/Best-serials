@@ -33,14 +33,26 @@ class SerialsController extends Controller
 
     public function update(Request $req) {
         $serial = Serials::where('id', $req->get('id'))->first();
+
+        if ($req->Poster) {
+            $imageFolderPath = "images/";
+            $base64Image = explode(";base64,", $req->Poster);
+            $explodeImage = explode("image/", $base64Image[0]);
+            $imageType = $explodeImage[1];
+            $image_base64 = base64_decode($base64Image[1]);
+            $file = $imageFolderPath . uniqid() . '.' . $imageType;
+            file_put_contents($file, $image_base64);
+            $serial->Poster = $file;
+        }
+
         $serial->update(
             array('Name' => $req->get('Name'),
-            'Poster' => $req->get('Poster'),
             'Description' => $req->get('Description'),
             'Directors' => $req->get('Directors'),
             'Rating' => $req->get('Rating'),
             'ReleaseYears' => $req->get('ReleaseYears'),
         ));
+
         $serial->genres()->sync($req->get('Genres'));
         $serial->countries()->sync($req->get('Countries'));
     }

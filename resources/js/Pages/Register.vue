@@ -56,7 +56,7 @@ export default {
     methods: {
         registerUser() {
             axios.post("/register", this.form).then(() => {
-                router.get("/");
+                router.get("/profile");
             });
         },
     },

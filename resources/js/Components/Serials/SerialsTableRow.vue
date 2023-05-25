@@ -4,8 +4,14 @@
             <input type="text" v-model="Name" />
         </td>
         <td>
-            <img :src="Poster" alt="Постер сериала" />
-            <input type="text" v-model="Poster" />
+            <img :src="Poster" alt="Постер сериала" v-if="image == ''" />
+            <img :src="image" alt="Постер сериала" v-else />
+            <input
+                type="file"
+                accept="image/*"
+                class="file"
+                @change="handleSelectedPoster"
+            />
         </td>
         <td>
             <textarea cols="50" rows="7" v-model="Description"></textarea>
@@ -60,6 +66,7 @@ export default {
             ReleaseYears: this.serial.ReleaseYears,
             Genres: this.serial.genres,
             Countries: this.serial.countries,
+            image: "",
         };
     },
     methods: {
@@ -67,7 +74,7 @@ export default {
             router.post("/update", {
                 id: this.serial.id,
                 Name: this.Name,
-                Poster: this.Poster,
+                Poster: this.image,
                 Description: this.Description,
                 Directors: this.Directors,
                 Rating: this.Rating,
@@ -81,6 +88,22 @@ export default {
             router.post("/deleteSerial", {
                 id: this.serial.id,
             });
+        },
+
+        handleSelectedPoster(event) {
+            var files = event.target.files;
+
+            if (!files.length) {
+                return;
+            }
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = (e) => {
+                this.image = e.target.result;
+            };
+
+            fileReader.readAsDataURL(files[0]);
         },
     },
 };
@@ -104,6 +127,10 @@ img {
 
 textarea {
     resize: none;
+}
+
+.file {
+    cursor: pointer;
 }
 
 .rating {

@@ -6,17 +6,31 @@
                 <div class="avatar">
                     <img
                         src="../../images/woman.jpg"
-                        alt="Фото пользователя"
+                        alt="Аватар"
                         v-if="!user.Photo && user.Sex == 'Женский'"
                     />
                     <img
                         src="../../images/man.jpg"
-                        alt="Фото пользователя"
+                        alt="Аватар"
                         v-else-if="!user.Photo && user.Sex == 'Мужской'"
                     />
-                    <img :src="user.Photo" alt="Фото пользователя" v-else />
+                    <img
+                        :src="user.Photo"
+                        alt="Фото пользователя"
+                        v-else-if="image == ''"
+                    />
+                    <img
+                        :src="image"
+                        alt="Фото пользователя"
+                        v-else-if="image"
+                    />
                     <label for="photo">Изменить фото</label>
-                    <input type="text" id="photo" v-model="user.Photo" />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        class="file"
+                        @change="handleSelectedImage"
+                    />
                 </div>
                 <div class="personalData">
                     <div class="name">
@@ -88,6 +102,7 @@ export default {
     data() {
         return {
             user: {},
+            image: "",
         };
     },
     mounted() {
@@ -100,7 +115,7 @@ export default {
             router.post("/updateProfile", {
                 name: this.user.name,
                 email: this.user.email,
-                photo: this.user.Photo,
+                photo: this.image,
                 sex: this.user.Sex,
                 dateOfBirth: this.user.DateOfBirth,
             });
@@ -114,6 +129,21 @@ export default {
             axios.post("/deleteProfile").then(() => {
                 router.get("/");
             });
+        },
+        handleSelectedImage(event) {
+            var files = event.target.files;
+
+            if (!files.length) {
+                return;
+            }
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = (e) => {
+                this.image = e.target.result;
+            };
+
+            fileReader.readAsDataURL(files[0]);
         },
     },
 };
@@ -151,6 +181,10 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.file {
+    cursor: pointer;
 }
 
 .name,

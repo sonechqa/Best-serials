@@ -17,8 +17,19 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user->name = $req['name'];
         $user->email = $req['email'];
-        $user->Photo = $req['photo'];
-        $user->sex = $req['sex'];
+
+        if ($req->photo) {
+            $imageFolderPath = "uploads/";
+            $base64Image = explode(";base64,", $req->photo);
+            $explodeImage = explode("image/", $base64Image[0]);
+            $imageType = $explodeImage[1];
+            $image_base64 = base64_decode($base64Image[1]);
+            $file = $imageFolderPath . uniqid() . '.' . $imageType;
+            file_put_contents($file, $image_base64);
+            $user->Photo = $file;
+        }
+
+        $user->Sex = $req['sex'];
         $user->DateOfBirth = $req['dateOfBirth'];
         $user->save();
     }

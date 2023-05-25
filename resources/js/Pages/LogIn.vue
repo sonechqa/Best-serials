@@ -52,7 +52,7 @@ export default {
             axios
                 .post("/logIn", this.form)
                 .then(() => {
-                    router.get("/");
+                    router.get("/profile");
                 })
                 .catch((error) => {
                     this.errors = error.response.data;
