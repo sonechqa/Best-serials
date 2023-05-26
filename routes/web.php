@@ -48,3 +48,4 @@ Route::post('register', [\App\Http\Controllers\RegisterController::class, 'addUs
 Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'profile']);
 Route::post('updateProfile', [\App\Http\Controllers\ProfileController::class, 'updateProfile']);
 Route::post('deleteProfile', [\App\Http\Controllers\ProfileController::class, 'deleteProfile']);
+Route::post('deletePhoto', [\App\Http\Controllers\ProfileController::class, 'deletePhoto']);

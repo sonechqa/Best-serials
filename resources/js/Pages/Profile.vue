@@ -6,13 +6,17 @@
                 <div class="avatar">
                     <img
                         src="../../images/woman.jpg"
-                        alt="Аватар"
-                        v-if="!user.Photo && user.Sex == 'Женский'"
+                        alt="Женский аватар"
+                        v-if="
+                            !user.Photo && user.Sex == 'Женский' && image == ''
+                        "
                     />
                     <img
                         src="../../images/man.jpg"
-                        alt="Аватар"
-                        v-else-if="!user.Photo && user.Sex == 'Мужской'"
+                        alt="Мужской аватар"
+                        v-else-if="
+                            !user.Photo && user.Sex == 'Мужской' && image == ''
+                        "
                     />
                     <img
                         :src="user.Photo"
@@ -21,7 +25,7 @@
                     />
                     <img
                         :src="image"
-                        alt="Фото пользователя"
+                        alt="Новое фото пользователя"
                         v-else-if="image"
                     />
                     <label for="photo">Изменить фото</label>
@@ -31,6 +35,14 @@
                         class="file"
                         @change="handleSelectedImage"
                     />
+                    <button
+                        type="button"
+                        v-if="user.Photo || image"
+                        class="deletePhoto"
+                        @click="deletePhoto"
+                    >
+                        Удалить фотографию
+                    </button>
                 </div>
                 <div class="personalData">
                     <div class="name">
@@ -120,16 +132,19 @@ export default {
                 dateOfBirth: this.user.DateOfBirth,
             });
         },
+
         logout() {
             axios.post("/logout").then(() => {
                 router.get("/");
             });
         },
+
         deleteProfile() {
             axios.post("/deleteProfile").then(() => {
                 router.get("/");
             });
         },
+
         handleSelectedImage(event) {
             var files = event.target.files;
 
@@ -145,11 +160,15 @@ export default {
 
             fileReader.readAsDataURL(files[0]);
         },
+
+        deletePhoto() {
+            axios.post("/deletePhoto");
+        },
     },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .title {
     text-align: center;
     margin-top: 30px;
@@ -157,17 +176,13 @@ export default {
 }
 
 .container {
-    width: 1000px;
-    margin: auto;
-    margin-top: 50px;
     background-color: white;
     padding: 50px;
-    border: 1px solid black;
-    box-shadow: 0px 0px 25px 13px rgb(50, 49, 49);
 }
 
 .wrapper {
     display: flex;
+    margin-bottom: 180px;
 }
 
 .avatar {
@@ -187,6 +202,17 @@ img {
     cursor: pointer;
 }
 
+.deletePhoto {
+    margin-top: 30px;
+    background-color: rgb(221, 179, 38);
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: rgb(224, 191, 83);
+        transition: background-color 0.3s;
+    }
+}
+
 .name,
 .email,
 .dateBirth {
@@ -202,7 +228,6 @@ input {
 }
 
 .buttons {
-    margin-top: 100px;
     display: flex;
     justify-content: space-around;
 }
@@ -217,40 +242,40 @@ button {
 .change {
     background-color: rgb(185, 181, 181);
     transition: background-color 0.3s;
-}
 
-.change:hover {
-    background-color: rgb(206, 202, 202);
-    transition: background-color 0.3s;
+    &:hover {
+        background-color: rgb(206, 202, 202);
+        transition: background-color 0.3s;
+    }
 }
 
 .save {
     background-color: rgb(68, 207, 68);
     transition: background-color 0.3s;
-}
 
-.save:hover {
-    background-color: rgb(124, 229, 124);
-    transition: background-color 0.3s;
+    &:hover {
+        background-color: rgb(124, 229, 124);
+        transition: background-color 0.3s;
+    }
 }
 
 .logout {
     background-color: rgb(86, 169, 229);
     transition: background-color 0.3s;
-}
 
-.logout:hover {
-    background-color: rgb(109, 183, 236);
-    transition: background-color 0.3s;
+    &:hover {
+        background-color: rgb(109, 183, 236);
+        transition: background-color 0.3s;
+    }
 }
 
 .delete {
     background-color: rgb(213, 76, 76);
     transition: background-color 0.3s;
-}
 
-.delete:hover {
-    background-color: rgb(226, 108, 108);
-    transition: background-color 0.3s;
+    &:hover {
+        background-color: rgb(226, 108, 108);
+        transition: background-color 0.3s;
+    }
 }
 </style>

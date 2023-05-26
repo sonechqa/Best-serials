@@ -32,11 +32,19 @@ class ProfileController extends Controller
         $user->Sex = $req['sex'];
         $user->DateOfBirth = $req['dateOfBirth'];
         $user->save();
+
+        return back();
     }
 
     public function deleteProfile() {
         $user = User::find(Auth::user()->id);
         Auth::logout();
         $user->delete();
+    }
+
+    public function deletePhoto() {
+        $user = Auth::user();
+        $user->Photo = "";
+        $user->save();
     }
 }

@@ -59,13 +59,8 @@ export default {
 
 <style scoped>
 .container {
-    width: 1000px;
-    margin: auto;
-    margin-top: 50px;
     background-color: white;
     padding: 50px;
-    border: 1px solid black;
-    box-shadow: 0px 0px 25px 13px rgb(50, 49, 49);
 }
 
 .wrapper {
