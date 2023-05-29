@@ -6,11 +6,17 @@
     </MainLayout>
 </template>
 
-<script setup>
+<script>
 import MainLayout from "@/Layouts/MainLayout.vue";
 
-defineProps({
-    currentPage: String,
-    projectData: Object,
-});
+export default {
+    name: "Project",
+    components: {
+        MainLayout,
+    },
+    props: {
+        currentPage: String,
+        projectData: Object,
+    },
+};
 </script>

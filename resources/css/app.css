@@ -1,6 +1,7 @@
 .antialiased {
     margin: 0;
     background: rgb(181, 177, 177);
+    padding-top: 80px;
 }
 
 * {

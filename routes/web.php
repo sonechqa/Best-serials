@@ -45,7 +45,7 @@ Route::post('logout', [\App\Http\Controllers\LogInController::class, 'logout']);
 Route::get('register', [\App\Http\Controllers\RegisterController::class, 'register']);
 Route::post('register', [\App\Http\Controllers\RegisterController::class, 'addUser'])->name('register');
 // профиль пользователя
-Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'profile']);
+Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
 Route::post('updateProfile', [\App\Http\Controllers\ProfileController::class, 'updateProfile']);
 Route::post('deleteProfile', [\App\Http\Controllers\ProfileController::class, 'deleteProfile']);
 Route::post('deletePhoto', [\App\Http\Controllers\ProfileController::class, 'deletePhoto']);

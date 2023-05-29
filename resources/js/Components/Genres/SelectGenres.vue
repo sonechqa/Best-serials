@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="cont">
         <div class="wrapper">
             <ul class="tags">
                 <li
@@ -95,7 +95,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .wrapper {
     position: relative;
     width: min-content;

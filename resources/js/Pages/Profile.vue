@@ -113,14 +113,11 @@ export default {
     },
     data() {
         return {
-            user: {},
             image: "",
         };
     },
-    mounted() {
-        axios.get("/api/user").then((res) => {
-            this.user = res.data;
-        });
+    props: {
+        user: Object,
     },
     methods: {
         saveProfile() {
@@ -140,9 +137,7 @@ export default {
         },
 
         deleteProfile() {
-            axios.post("/deleteProfile").then(() => {
-                router.get("/");
-            });
+            router.post("/deleteProfile");
         },
 
         handleSelectedImage(event) {
@@ -162,7 +157,7 @@ export default {
         },
 
         deletePhoto() {
-            axios.post("/deletePhoto");
+            router.post("/deletePhoto");
         },
     },
 };

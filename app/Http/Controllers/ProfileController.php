@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
     public function profile() {
-        return Inertia::render('Profile', []);
+        return Inertia::render('Profile', [
+            'user' => Auth::user(),
+        ]);
     }
 
     public function updateProfile(Request $req) {
@@ -33,18 +36,27 @@ class ProfileController extends Controller
         $user->DateOfBirth = $req['dateOfBirth'];
         $user->save();
 
-        return back();
+        return to_route('profile');
     }
 
     public function deleteProfile() {
         $user = User::find(Auth::user()->id);
         Auth::logout();
         $user->delete();
+        return to_route('home');
     }
 
     public function deletePhoto() {
         $user = Auth::user();
+        $image = $user->Photo;
+        $filepath = public_path() . "/" . $image;
+
+        if(file_exists($filepath)) {
+            unlink($filepath);
+        }
+
         $user->Photo = "";
         $user->save();
+        return to_route('profile');
     }
 }

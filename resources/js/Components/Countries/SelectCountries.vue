@@ -98,7 +98,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .wrap {
     position: relative;
     width: min-content;

@@ -1,22 +1,26 @@
 <template>
-    <h1>Добавление страны в список</h1>
-    <form @submit.prevent="postCountry">
-        <div>
-            <label for="Name">Название: </label>
-            <input type="text" id="Name" v-model="Name" />
-        </div>
-        <button>Добавить</button>
-    </form>
-    <ExistingCountries :countries="countries"></ExistingCountries>
+    <MainLayout>
+        <h1>Добавление страны в список</h1>
+        <form @submit.prevent="postCountry">
+            <div>
+                <label for="Name">Название: </label>
+                <input type="text" id="Name" v-model="Name" />
+            </div>
+            <button>Добавить</button>
+        </form>
+        <ExistingCountries :countries="countries"></ExistingCountries>
+    </MainLayout>
 </template>
 
 <script>
+import MainLayout from "../Layouts/MainLayout.vue";
 import axios from "axios";
 import ExistingCountries from "../Components/Countries/ExistingCountries.vue";
 
 export default {
     name: "AddCountry",
     components: {
+        MainLayout,
         ExistingCountries,
     },
     data() {

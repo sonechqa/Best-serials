@@ -15,9 +15,17 @@
     </main>
 </template>
 
-<script setup>
-import { Link } from "@inertiajs/vue3";
+<script>
 import Header from "../Components/Header.vue";
+import { Link } from "@inertiajs/vue3";
+
+export default {
+    name: "MainLayout",
+    components: {
+        Header,
+        Link,
+    },
+};
 </script>
 
 <style scoped>

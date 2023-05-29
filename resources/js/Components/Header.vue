@@ -99,12 +99,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .header {
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: rgb(34, 31, 31);
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .header__title {
