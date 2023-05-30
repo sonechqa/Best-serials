@@ -20,4 +20,8 @@ class Serials extends Model
     public function countries() {
         return $this->belongsToMany(Countries::class);
     }
+
+    public function folders() {
+        return $this->belongsToMany(Folders::class);
+    }
 }

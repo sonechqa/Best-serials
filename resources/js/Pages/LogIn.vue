@@ -1,5 +1,5 @@
 <template>
-    <MainLayout>
+    <MainLayout :user="user">
         <div class="container">
             <h1 class="title">Авторизация</h1>
             <form @submit.prevent="sendDataToLogIn">
@@ -37,6 +37,9 @@ export default {
     name: "LogIn",
     components: {
         MainLayout,
+    },
+    props: {
+        user: Object,
     },
     data() {
         return {

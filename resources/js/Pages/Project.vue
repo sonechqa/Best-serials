@@ -1,5 +1,5 @@
 <template>
-    <MainLayout :current-page="currentPage">
+    <MainLayout :current-page="currentPage" :user="user">
         <h1>Project Page</h1>
         <div>Название: {{ projectData[0].Name }}</div>
         <div>Автор: {{ projectData[0].Author }}</div>
@@ -17,6 +17,7 @@ export default {
     props: {
         currentPage: String,
         projectData: Object,
+        user: Object,
     },
 };
 </script>

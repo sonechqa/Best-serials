@@ -1,14 +1,21 @@
 <template>
-    <div class="form">
-        <p class="title">Жанры:</p>
-        <div class="genre" v-for="genre in genres" :key="genre.id">
+    <div class="genresFilter">
+        <p class="genresFilter__title">Жанры:</p>
+        <div
+            class="genresFilter__genre"
+            v-for="genre in genres"
+            :key="genre.id"
+        >
             <input
                 type="checkbox"
                 :id="'genres' + genre.id"
                 :value="genre.id"
                 v-model="checkedGenres"
+                class="genresFilter__checkbox"
             />
-            <label :for="'genres' + genre.id">{{ genre.Name }}</label>
+            <label :for="'genres' + genre.id" class="genresFilter__name">{{
+                genre.Name
+            }}</label>
         </div>
     </div>
 </template>
@@ -33,28 +40,28 @@ export default {
 };
 </script>
 
-<style scoped>
-.form {
+<style scoped lang="scss">
+.genresFilter {
     display: flex;
     flex-direction: column;
-}
 
-.title {
-    font-weight: 700;
-    margin-top: 0;
-}
+    &__title {
+        font-weight: 700;
+        margin-top: 0;
+    }
 
-.genre {
-    display: flex;
-    margin-bottom: 20px;
-}
+    &__genre {
+        display: flex;
+        margin-bottom: 20px;
+    }
 
-input {
-    cursor: pointer;
-    margin-right: 5px;
-}
+    &__checkbox {
+        cursor: pointer;
+        margin-right: 5px;
+    }
 
-label {
-    cursor: pointer;
+    &__name {
+        cursor: pointer;
+    }
 }
 </style>

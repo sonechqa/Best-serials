@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Serials;
+use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
@@ -12,6 +13,7 @@ class SearchController extends Controller
         $search = $req->get('search');
         return Inertia::render('SearchResults', [
             'serials' => Serials::where('Name', 'LIKE', $search.'%')->with('genres', 'countries')->get(),
+            'user' => Auth::user(),
         ]);
     }
 }

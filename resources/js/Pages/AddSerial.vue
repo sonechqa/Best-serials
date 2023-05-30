@@ -26,11 +26,12 @@ function submit() {
 
 defineProps({
     serials: Array,
+    user: Object,
 });
 </script>
 
 <template>
-    <MainLayout>
+    <MainLayout :user="user">
         <h1>Добавление сериала в список</h1>
         <form @submit.prevent="submit">
             <div class="wrapperFor">

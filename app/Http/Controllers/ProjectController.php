@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Models\Project;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -15,6 +16,7 @@ class ProjectController extends Controller
         return Inertia::render('Project', [
             'currentPage' => 'project',
             'projectData' => $projectData,
+            'user' => Auth::user(),
         ]);
     }
 }

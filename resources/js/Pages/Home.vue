@@ -1,5 +1,5 @@
 <template>
-    <MainLayout>
+    <MainLayout :user="user">
         <AllSerials
             :serials="serials"
             :genres="genres"
@@ -26,6 +26,7 @@ export default {
         countries: Array,
         selectedGenres: Array,
         selectedCountries: Array,
+        user: Object,
     },
 };
 </script>

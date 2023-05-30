@@ -1,5 +1,5 @@
 <template>
-    <MainLayout>
+    <MainLayout :user="user">
         <div class="container">
             <h1 class="title">Регистрация</h1>
             <form @submit.prevent="registerUser">
@@ -42,6 +42,9 @@ export default {
     name: "Register",
     components: {
         MainLayout,
+    },
+    props: {
+        user: Object,
     },
     data() {
         return {

@@ -68,6 +68,7 @@ export default {
 .container {
     display: flex;
     background-color: rgb(239, 231, 231);
+    padding-bottom: 40px;
 }
 
 .filters {

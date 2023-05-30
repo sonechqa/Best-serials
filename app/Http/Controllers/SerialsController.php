@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Serials;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class SerialsController extends Controller
 {
     public function serials() {
         return Inertia::render('AddSerial', [
             'serials' => Serials::with('genres', 'countries')->get(),
+            'user' => Auth::user(),
         ]);
     }
 
@@ -64,6 +66,7 @@ class SerialsController extends Controller
     public function showSerialPage(string $id) {
         return Inertia::render('OneSerial', [
             'serial' => Serials::where('id', $id)->with('genres', 'countries')->first(),
+            'user' => Auth::user(),
         ]);
     }
 

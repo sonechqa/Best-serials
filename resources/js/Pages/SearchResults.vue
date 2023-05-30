@@ -1,5 +1,5 @@
 <template>
-    <MainLayout>
+    <MainLayout :user="user">
         <div class="container">
             <h1>Результаты поиска</h1>
             <SerialsOnMain :serials="serials" />
@@ -26,6 +26,7 @@ export default {
     },
     props: {
         serials: Array,
+        user: Object,
     },
 };
 </script>

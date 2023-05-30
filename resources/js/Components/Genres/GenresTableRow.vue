@@ -1,13 +1,21 @@
 <template>
-    <tr>
-        <td>
-            <input type="text" v-model="Name" />
+    <tr class="genresTableRow">
+        <td class="genresTableRow__td">
+            <input type="text" v-model="Name" class="genresTableRow__name" />
         </td>
-        <div class="buttons">
-            <button type="button" class="saveGenre" @click="saveGenre">
+        <div class="genresTableRow__buttons">
+            <button
+                type="button"
+                class="genresTableRow__saveGenre"
+                @click="saveGenre"
+            >
                 Сохранить
             </button>
-            <button type="button" class="deleteGenre" @click="deleteGenre">
+            <button
+                type="button"
+                class="genresTableRow__deleteGenre"
+                @click="deleteGenre"
+            >
                 Удалить жанр
             </button>
         </div>
@@ -43,43 +51,43 @@ export default {
 };
 </script>
 
-<style scoped>
-tr {
+<style scoped lang="scss">
+.genresTableRow {
     position: relative;
-}
 
-td {
-    padding: 3px;
-    border: 1px solid black;
-    text-align: center;
-    height: 40px;
-}
+    &__td {
+        padding: 3px;
+        border: 1px solid black;
+        text-align: center;
+        height: 40px;
+    }
 
-input {
-    outline: none;
-}
+    &__name {
+        outline: none;
+    }
 
-.buttons {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
+    &__buttons {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 
-.saveGenre {
-    margin-left: 10px;
-    background-color: rgb(83, 184, 221);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    &__saveGenre {
+        margin-left: 10px;
+        background-color: rgb(83, 184, 221);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-.deleteGenre {
-    margin-left: 10px;
-    padding: 0px 15px;
-    background-color: rgb(58, 198, 62);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    &__deleteGenre {
+        margin-left: 10px;
+        padding: 0px 15px;
+        background-color: rgb(58, 198, 62);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 }
 </style>

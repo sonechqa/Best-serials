@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Serials;
 use App\Models\Genres;
 use App\Models\Countries;
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
@@ -20,6 +21,7 @@ class MainController extends Controller
                 'serials' => Serials::with('genres', 'countries')->get(),
                 'genres' => Genres::all(),
                 'countries' => Countries::all(),
+                'user' => Auth::user(),
             ]);
         } elseif ($selectedGenres && $selectedCountries) {
             $serials = Serials::whereHas('genres', function(Builder $query) use($selectedGenres){
@@ -34,7 +36,8 @@ class MainController extends Controller
                 'genres' => Genres::all(),
                 'countries' => Countries::all(),
                 'selectedGenres' => $selectedGenres,
-                'selectedCountries' => $selectedCountries
+                'selectedCountries' => $selectedCountries,
+                'user' => Auth::user(),
             ]);
         } else {
             $serials = Serials::whereHas('genres', function(Builder $query) use($selectedGenres){
@@ -49,7 +52,8 @@ class MainController extends Controller
                 'genres' => Genres::all(),
                 'countries' => Countries::all(),
                 'selectedGenres' => $selectedGenres,
-                'selectedCountries' => $selectedCountries
+                'selectedCountries' => $selectedCountries,
+                'user' => Auth::user(),
             ]);
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <MainLayout>
+    <MainLayout :user="user">
         <SerialDescription :serial="serial" />
     </MainLayout>
 </template>
@@ -16,8 +16,7 @@ export default {
     },
     props: {
         serial: Array,
+        user: Object,
     },
 };
 </script>
-
-<style scoped></style>

@@ -1,11 +1,17 @@
 <template>
-    <main>
+    <main class="mainLayout">
         <header>
-            <Header></Header>
-            <div class="links">
-                <Link href="/addSerial" class="link"> Добавить сериал </Link>
-                <Link href="/addGenre" class="link"> Добавить жанр </Link>
-                <Link href="/addCountry" class="link"> Добавить страну </Link>
+            <Header :user="user"></Header>
+            <div class="mainLayout__links">
+                <Link href="/addSerial" class="mainLayout__link">
+                    Добавить сериал
+                </Link>
+                <Link href="/addGenre" class="mainLayout__link">
+                    Добавить жанр
+                </Link>
+                <Link href="/addCountry" class="mainLayout__link">
+                    Добавить страну
+                </Link>
             </div>
         </header>
         <article>
@@ -25,28 +31,33 @@ export default {
         Header,
         Link,
     },
+    props: {
+        user: Object,
+    },
 };
 </script>
 
-<style scoped>
-.links {
-    text-align: center;
-    margin-top: 30px;
-}
+<style scoped lang="scss">
+.mainLayout {
+    &__links {
+        text-align: center;
+        margin-top: 30px;
+    }
 
-.link {
-    text-decoration: none;
-    font-family: Roboto;
-    color: black;
-    transition: color 0.3s;
-}
+    &__link {
+        text-decoration: none;
+        font-family: Roboto;
+        color: black;
+        transition: color 0.3s;
 
-.link:hover {
-    color: rgb(43, 35, 35);
-    transition: color 0.3s;
-}
+        &:hover {
+            color: rgb(43, 35, 35);
+            transition: color 0.3s;
+        }
 
-.link:not(:last-child) {
-    margin-right: 20px;
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
 }
 </style>

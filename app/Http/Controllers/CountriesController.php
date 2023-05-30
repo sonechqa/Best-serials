@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Countries;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class CountriesController extends Controller
 {
@@ -17,6 +18,7 @@ class CountriesController extends Controller
     public function renderCountries() {
         return Inertia::render('AddCountry', [
             'countries' => Countries::all(),
+            'user' => Auth::user(),
         ]);
     }
 

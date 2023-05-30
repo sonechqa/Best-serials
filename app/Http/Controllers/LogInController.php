@@ -11,7 +11,9 @@ use Illuminate\Validation\ValidationException;
 class LogInController extends Controller
 {
     public function renderLogIn() {
-        return Inertia::render('LogIn', []);
+        return Inertia::render('LogIn', [
+            'user' => Auth::user(),
+        ]);
     }
 
     public function logInUser(Request $req) {

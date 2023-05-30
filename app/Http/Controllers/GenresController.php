@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Genres;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class GenresController extends Controller
 {
@@ -17,6 +18,7 @@ class GenresController extends Controller
     public function renderGenres() {
         return Inertia::render('AddGenre', [
             'genres' => Genres::all(),
+            'user' => Auth::user(),
         ]);
     }
 

@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
     public function register() {
-        return Inertia::render('Register', []);
+        return Inertia::render('Register', [
+            'user' => Auth::user(),
+        ]);
     }
 
     public function addUser(Request $req) {

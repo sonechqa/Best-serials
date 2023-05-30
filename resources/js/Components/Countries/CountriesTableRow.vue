@@ -1,13 +1,21 @@
 <template>
-    <tr>
-        <td>
-            <input type="text" v-model="Name" />
+    <tr class="countriesTableRow">
+        <td class="countriesTableRow__td">
+            <input type="text" v-model="Name" class="countriesTableRow__name" />
         </td>
-        <div class="buttons">
-            <button type="button" class="saveCountry" @click="saveCountry">
+        <div class="countriesTableRow__buttons">
+            <button
+                type="button"
+                class="countriesTableRow__saveCountry"
+                @click="saveCountry"
+            >
                 Сохранить
             </button>
-            <button type="button" class="deleteCountry" @click="deleteCountry">
+            <button
+                type="button"
+                class="countriesTableRow__deleteCountry"
+                @click="deleteCountry"
+            >
                 Удалить страну
             </button>
         </div>
@@ -44,43 +52,43 @@ export default {
 };
 </script>
 
-<style scoped>
-tr {
+<style scoped lang="scss">
+.countriesTableRow {
     position: relative;
-}
 
-td {
-    padding: 3px;
-    border: 1px solid black;
-    text-align: center;
-    height: 40px;
-}
+    &__td {
+        padding: 3px;
+        border: 1px solid black;
+        text-align: center;
+        height: 40px;
+    }
 
-input {
-    outline: none;
-}
+    &__name {
+        outline: none;
+    }
 
-.buttons {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
+    &__buttons {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 
-.saveCountry {
-    margin-left: 10px;
-    background-color: rgb(83, 184, 221);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    &__saveCountry {
+        margin-left: 10px;
+        background-color: rgb(83, 184, 221);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-.deleteCountry {
-    margin-left: 10px;
-    padding: 0px 15px;
-    background-color: rgb(58, 198, 62);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    &__deleteCountry {
+        margin-left: 10px;
+        padding: 0px 15px;
+        background-color: rgb(58, 198, 62);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 }
 </style>

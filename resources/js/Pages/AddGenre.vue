@@ -1,5 +1,5 @@
 <template>
-    <MainLayout>
+    <MainLayout :user="user">
         <h1>Добавление жанра в список</h1>
         <form @submit.prevent="postGenre">
             <div>
@@ -25,6 +25,7 @@ export default {
     },
     props: {
         genres: Array,
+        user: Object,
     },
     data() {
         return {

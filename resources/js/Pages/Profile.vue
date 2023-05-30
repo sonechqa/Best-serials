@@ -1,5 +1,5 @@
 <template>
-    <MainLayout>
+    <MainLayout :user="user">
         <h1 class="title">Мой профиль</h1>
         <div class="container">
             <div class="wrapper">
