@@ -1,6 +1,6 @@
 <template>
     <MainLayout :user="user">
-        <SerialDescription :serial="serial" />
+        <SerialDescription :serial="serial" :folders="folders" />
     </MainLayout>
 </template>
 
@@ -15,8 +15,9 @@ export default {
         SerialDescription,
     },
     props: {
-        serial: Array,
+        serial: Object,
         user: Object,
+        folders: Array,
     },
 };
 </script>

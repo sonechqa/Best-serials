@@ -12,6 +12,9 @@
                 <Link href="/addCountry" class="mainLayout__link">
                     Добавить страну
                 </Link>
+                <Link href="/addFolder" class="mainLayout__link">
+                    Добавить папку
+                </Link>
             </div>
         </header>
         <article>

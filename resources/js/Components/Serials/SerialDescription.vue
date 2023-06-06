@@ -1,7 +1,29 @@
 <template>
     <div class="container">
         <div class="wrapper">
-            <img :src="serial.Poster" alt="Постер сериала" class="poster" />
+            <div class="posterAndFolder">
+                <img
+                    :src="'/' + serial.Poster"
+                    alt="Постер сериала"
+                    class="poster"
+                />
+                <button type="button" class="addToFolder" @click="toggle">
+                    Добавить в папку
+                </button>
+                <div
+                    class="folders"
+                    v-if="foldersVisibility"
+                    v-click-away="away"
+                >
+                    <span
+                        v-for="folder in folders"
+                        :key="folder.id"
+                        class="folder"
+                    >
+                        {{ folder.Name }}
+                    </span>
+                </div>
+            </div>
             <div class="properties">
                 <h1>{{ serial.Name }}</h1>
                 <h3>О сериале</h3>
@@ -38,8 +60,8 @@
                     green: serial.Rating >= 7,
                     red: serial.Rating < 7,
                 }"
-                >{{ serial.Rating }}</span
-            >
+                >{{ serial.Rating }}
+            </span>
         </div>
         <div class="description">
             <h3>Описание сериала</h3>
@@ -49,15 +71,32 @@
 </template>
 
 <script>
+import { mixin as VueClickAway } from "vue3-click-away";
+
 export default {
     name: "SerialDescription",
     props: {
-        serial: Array,
+        serial: Object,
+        folders: Array,
+    },
+    data() {
+        return {
+            foldersVisibility: false,
+        };
+    },
+    mixins: [VueClickAway],
+    methods: {
+        toggle() {
+            this.foldersVisibility = !this.foldersVisibility;
+        },
+        away() {
+            this.foldersVisibility = false;
+        },
     },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .container {
     background-color: white;
     padding: 50px;
@@ -69,10 +108,52 @@ export default {
     padding-bottom: 50px;
 }
 
+.posterAndFolder {
+    display: flex;
+    flex-direction: column;
+}
+
 .poster {
     width: 300px;
     height: 450px;
-    margin-right: 30px;
+    margin-bottom: 50px;
+}
+
+.addToFolder {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgb(186, 174, 174);
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: rgb(202, 194, 194);
+        transition: background-color 0.3s;
+    }
+}
+
+.folders {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.folder {
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: rgb(211, 209, 209);
+        transition: background-color 0.3s;
+    }
+}
+
+.properties {
+    margin-left: 40px;
 }
 
 h1 {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Serials;
+use App\Models\Folders;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -67,6 +68,7 @@ class SerialsController extends Controller
         return Inertia::render('OneSerial', [
             'serial' => Serials::where('id', $id)->with('genres', 'countries')->first(),
             'user' => Auth::user(),
+            'folders' => Folders::all(),
         ]);
     }
 
