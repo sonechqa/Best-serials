@@ -54,3 +54,6 @@ Route::get('addFolder', [\App\Http\Controllers\FoldersController::class, 'render
 Route::post('addFolder', [\App\Http\Controllers\FoldersController::class, 'addFolders'])->name('addFolder');
 Route::post('updateFolder', [\App\Http\Controllers\FoldersController::class, 'updateFolder']);
 Route::post('deleteFolder', [\App\Http\Controllers\FoldersController::class, 'deleteFolder']);
+Route::post('addSerialInFolder', [\App\Http\Controllers\FoldersController::class, 'addInFolder']);
+Route::get('folders/1', [\App\Http\Controllers\FoldersController::class, 'willWatch']);
+Route::get('folders/{id}', [\App\Http\Controllers\FoldersController::class, 'renderOneFolder']);

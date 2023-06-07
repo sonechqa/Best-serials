@@ -7,21 +7,24 @@
                     alt="Постер сериала"
                     class="poster"
                 />
-                <button type="button" class="addToFolder" @click="toggle">
-                    Добавить в папку
-                </button>
-                <div
-                    class="folders"
-                    v-if="foldersVisibility"
-                    v-click-away="away"
-                >
-                    <span
-                        v-for="folder in folders"
-                        :key="folder.id"
-                        class="folder"
+                <div class="wrap">
+                    <button type="button" class="addToFolder" @click="toggle">
+                        Добавить в папку
+                    </button>
+                    <div
+                        class="folders"
+                        v-if="foldersVisibility"
+                        v-click-away="away"
                     >
-                        {{ folder.Name }}
-                    </span>
+                        <span
+                            v-for="(folder, index) in folders"
+                            :key="folder"
+                            class="folder"
+                            @click="() => attach(index)"
+                        >
+                            {{ folder.Name }}
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="properties">
@@ -72,6 +75,7 @@
 
 <script>
 import { mixin as VueClickAway } from "vue3-click-away";
+import axios from "axios";
 
 export default {
     name: "SerialDescription",
@@ -82,6 +86,7 @@ export default {
     data() {
         return {
             foldersVisibility: false,
+            folderId: "",
         };
     },
     mixins: [VueClickAway],
@@ -91,6 +96,12 @@ export default {
         },
         away() {
             this.foldersVisibility = false;
+        },
+        attach(index) {
+            axios.post("/addSerialInFolder", {
+                folderId: this.folders[index].id,
+                serialId: this.serial.id,
+            });
         },
     },
 };
@@ -119,6 +130,10 @@ export default {
     margin-bottom: 50px;
 }
 
+.wrap {
+    position: relative;
+}
+
 .addToFolder {
     cursor: pointer;
     border: none;
@@ -126,6 +141,7 @@ export default {
     padding: 10px;
     background-color: rgb(186, 174, 174);
     transition: background-color 0.3s;
+    width: 100%;
 
     &:hover {
         background-color: rgb(202, 194, 194);
@@ -139,6 +155,9 @@ export default {
     border: 1px solid gray;
     border-radius: 5px;
     margin-top: 5px;
+    position: absolute;
+    width: 100%;
+    background-color: white;
 }
 
 .folder {
