@@ -1,5 +1,5 @@
 <template>
-    <MainLayout :user="user">
+    <MainLayout :user="user" :folders="folders">
         <div class="container">
             <h1 class="title">Регистрация</h1>
             <form @submit.prevent="registerUser">
@@ -45,6 +45,7 @@ export default {
     },
     props: {
         user: Object,
+        folders: Array,
     },
     data() {
         return {

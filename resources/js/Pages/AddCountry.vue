@@ -1,5 +1,5 @@
 <template>
-    <MainLayout :user="user">
+    <MainLayout :user="user" :folders="folders">
         <h1>Добавление страны в список</h1>
         <form @submit.prevent="postCountry">
             <div>
@@ -8,7 +8,7 @@
             </div>
             <button>Добавить</button>
         </form>
-        <ExistingCountries :countries="countries"></ExistingCountries>
+        <ExistingCountries :countries="countries" />
     </MainLayout>
 </template>
 
@@ -31,6 +31,7 @@ export default {
     props: {
         countries: Array,
         user: Object,
+        folders: Array,
     },
     methods: {
         postCountry() {

@@ -1,7 +1,7 @@
 <template>
     <main class="mainLayout">
         <header>
-            <Header :user="user"></Header>
+            <Header :user="user" :folders="folders" />
             <div class="mainLayout__links">
                 <Link href="/addSerial" class="mainLayout__link">
                     Добавить сериал
@@ -36,6 +36,7 @@ export default {
     },
     props: {
         user: Object,
+        folders: Array,
     },
 };
 </script>

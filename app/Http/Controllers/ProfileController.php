@@ -7,12 +7,14 @@ use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use App\Models\Folders;
 
 class ProfileController extends Controller
 {
     public function profile() {
         return Inertia::render('Profile', [
             'user' => Auth::user(),
+            'folders' => Folders::all(),
         ]);
     }
 

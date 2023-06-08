@@ -38,7 +38,9 @@
             </a>
             <div class="header__dropdown">
                 <a href="/profile" class="header__pageLink">Мой профиль</a>
-                <a href="/folders/1" class="header__pageLink">Мои папки</a>
+                <a :href="'/folders/' + folders[0].id" class="header__pageLink">
+                    Мои папки
+                </a>
             </div>
         </div>
         <div class="header__register" v-else>
@@ -63,6 +65,7 @@ export default {
     },
     props: {
         user: Object,
+        folders: Array,
     },
     methods: {
         showVariants() {

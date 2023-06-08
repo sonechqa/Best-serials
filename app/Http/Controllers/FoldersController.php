@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Folders;
-use App\Models\Serials;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Folders;
+use App\Models\Serials;
+use App\Services\FilterService;
 
 class FoldersController extends Controller
 {
+    protected $filterService;
+
+    public function __construct(FilterService $filterService) {
+        $this->filterService = $filterService;
+    }
+
     public function renderFolders() {
         return Inertia::render('AddFolder', [
             'folders' => Folders::all(),
@@ -42,27 +48,9 @@ class FoldersController extends Controller
         $serial->folders()->attach($folder);
     }
 
-    public function willWatch() {
-        $serials = Serials::whereHas('folders', function(Builder $query) {
-            $query->where('folders_id', 1);
-        })
-        ->with('genres', 'countries')->get();
-        return Inertia::render('WillWatch', [
-            'serials' => $serials,
-            'folders' => Folders::all(),
-            'user' => Auth::user(),
-        ]);
-    }
-
-    public function renderOneFolder(string $id) {
-        $serials = Serials::whereHas('folders', function(Builder $query) use($id) {
-            $query->where('folders_id', $id);
-        })
-        ->with('genres', 'countries')->get();
-        return Inertia::render('OneFolder', [
-            'serials' => $serials,
-            'folder' => Folders::where('id', $id)->first(),
-            'user' => Auth::user(),
-        ]);
+    public function renderOneFolder(string $id, Request $req) {
+        $selectedGenres = $req->get('checkedGenres');
+        $selectedCountries = $req->get('checkedCountries');
+        return Inertia::render('OneFolder', $this->filterService->withFilters($selectedGenres, $selectedCountries, $id));
     }
 }

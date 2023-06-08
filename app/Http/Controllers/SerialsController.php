@@ -14,6 +14,7 @@ class SerialsController extends Controller
         return Inertia::render('AddSerial', [
             'serials' => Serials::with('genres', 'countries')->get(),
             'user' => Auth::user(),
+            'folders' => Folders::all(),
         ]);
     }
 

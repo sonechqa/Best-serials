@@ -26,10 +26,10 @@
             <input type="text" class="years" v-model="ReleaseYears" />
         </td>
         <td>
-            <SelectGenres v-model="Genres"></SelectGenres>
+            <SelectGenres v-model="Genres" />
         </td>
         <td>
-            <SelectCountries v-model="Countries"></SelectCountries>
+            <SelectCountries v-model="Countries" />
         </td>
         <div class="buttons">
             <button type="button" class="saveSerial" @click="saveData">

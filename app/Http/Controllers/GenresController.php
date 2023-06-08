@@ -6,6 +6,7 @@ use App\Models\Genres;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Folders;
 
 class GenresController extends Controller
 {
@@ -19,6 +20,7 @@ class GenresController extends Controller
         return Inertia::render('AddGenre', [
             'genres' => Genres::all(),
             'user' => Auth::user(),
+            'folders' => Folders::all(),
         ]);
     }
 

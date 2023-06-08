@@ -27,11 +27,12 @@ function submit() {
 defineProps({
     serials: Array,
     user: Object,
+    folders: Array,
 });
 </script>
 
 <template>
-    <MainLayout :user="user">
+    <MainLayout :user="user" :folders="folders">
         <h1>Добавление сериала в список</h1>
         <form @submit.prevent="submit">
             <div class="wrapperFor">
@@ -73,18 +74,15 @@ defineProps({
             </div>
             <div class="wrapperFor wrapperForGenres">
                 <label for="Genres" class="genres">Жанры: </label>
-                <SelectGenres id="Genres" v-model="form.Genres"></SelectGenres>
+                <SelectGenres id="Genres" v-model="form.Genres" />
             </div>
             <div class="wrapperFor wrapperForCountries">
                 <label for="Countries" class="countries">Страны: </label>
-                <SelectCountries
-                    id="Countries"
-                    v-model="form.Countries"
-                ></SelectCountries>
+                <SelectCountries id="Countries" v-model="form.Countries" />
             </div>
             <button>Добавить</button>
         </form>
-        <ExistingSerials :serials="serials"></ExistingSerials>
+        <ExistingSerials :serials="serials" />
     </MainLayout>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <MainLayout :user="user">
+    <MainLayout :user="user" :folders="folders">
         <div class="container">
             <h1>Результаты поиска</h1>
             <SerialsOnMain :serials="serials" />
@@ -27,6 +27,7 @@ export default {
     props: {
         serials: Array,
         user: Object,
+        folders: Array,
     },
 };
 </script>

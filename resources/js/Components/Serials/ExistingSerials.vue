@@ -18,7 +18,7 @@
                 v-for="serial in serials"
                 :key="serial.id"
                 :serial="serial"
-            ></SerialsTableRow>
+            />
         </tbody>
     </table>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div class="serials" v-for="serial in serials" :key="serial.id">
-        <img :src="serial.Poster" alt="Постер сериала" />
+        <img :src="'/' + serial.Poster" alt="Постер сериала" />
         <div class="properties">
             <a :href="'/serials/' + serial.id">
                 <h3>{{ serial.Name }}</h3>

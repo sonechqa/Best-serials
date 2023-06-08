@@ -7,12 +7,14 @@ use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Folders;
 
 class RegisterController extends Controller
 {
     public function register() {
         return Inertia::render('Register', [
             'user' => Auth::user(),
+            'folders' => Folders::all(),
         ]);
     }
 

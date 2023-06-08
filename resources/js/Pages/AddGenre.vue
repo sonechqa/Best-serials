@@ -1,5 +1,5 @@
 <template>
-    <MainLayout :user="user">
+    <MainLayout :user="user" :folders="folders">
         <h1>Добавление жанра в список</h1>
         <form @submit.prevent="postGenre">
             <div>
@@ -8,7 +8,7 @@
             </div>
             <button>Добавить</button>
         </form>
-        <ExistingGenres :genres="genres"></ExistingGenres>
+        <ExistingGenres :genres="genres" />
     </MainLayout>
 </template>
 
@@ -26,6 +26,7 @@ export default {
     props: {
         genres: Array,
         user: Object,
+        folders: Array,
     },
     data() {
         return {

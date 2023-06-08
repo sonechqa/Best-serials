@@ -11,7 +11,7 @@
                 v-for="country in countries"
                 :key="country.id"
                 :country="country"
-            ></CountriesTableRow>
+            />
         </tbody>
     </table>
 </template>

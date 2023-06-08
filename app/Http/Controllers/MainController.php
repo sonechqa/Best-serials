@@ -3,58 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 use Inertia\Inertia;
-use App\Models\User;
-use App\Models\Serials;
-use App\Models\Genres;
-use App\Models\Countries;
-use Illuminate\Support\Facades\Auth;
+use App\Services\FilterService;
 
 class MainController extends Controller
 {
+    protected $filterService;
+
+    public function __construct(FilterService $filterService) {
+        $this->filterService = $filterService;
+    }
+
     public function home(Request $req) {
         $selectedGenres = $req->get('checkedGenres');
         $selectedCountries = $req->get('checkedCountries');
-        if (!$selectedGenres && !$selectedCountries) {
-            return Inertia::render('Home', [
-                'serials' => Serials::with('genres', 'countries')->get(),
-                'genres' => Genres::all(),
-                'countries' => Countries::all(),
-                'user' => Auth::user(),
-            ]);
-        } elseif ($selectedGenres && $selectedCountries) {
-            $serials = Serials::whereHas('genres', function(Builder $query) use($selectedGenres){
-                $query->where('genres_id', $selectedGenres);
-            })
-            ->whereHas('countries', function(Builder $q) use($selectedCountries){
-                $q->where('countries_id', $selectedCountries);
-            })
-            ->with('genres', 'countries')->get();
-            return Inertia::render('Home', [
-                'serials' => $serials,
-                'genres' => Genres::all(),
-                'countries' => Countries::all(),
-                'selectedGenres' => $selectedGenres,
-                'selectedCountries' => $selectedCountries,
-                'user' => Auth::user(),
-            ]);
-        } else {
-            $serials = Serials::whereHas('genres', function(Builder $query) use($selectedGenres){
-                $query->where('genres_id', $selectedGenres);
-            })
-            ->orWhereHas('countries', function(Builder $q) use($selectedCountries){
-                $q->where('countries_id', $selectedCountries);
-            })
-            ->with('genres', 'countries')->get();
-            return Inertia::render('Home', [
-                'serials' => $serials,
-                'genres' => Genres::all(),
-                'countries' => Countries::all(),
-                'selectedGenres' => $selectedGenres,
-                'selectedCountries' => $selectedCountries,
-                'user' => Auth::user(),
-            ]);
-        }
+        return Inertia::render('Home', $this->filterService->withFilters($selectedGenres, $selectedCountries));
     }
 }

@@ -11,7 +11,7 @@
                 v-for="genre in genres"
                 :key="genre.id"
                 :genre="genre"
-            ></GenresTableRow>
+            />
         </tbody>
     </table>
 </template>

@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class="filters">
+            <slot />
             <GenresFilter
                 :genres="genres"
                 :selectedGenres="selectedGenres"
@@ -42,6 +43,7 @@ export default {
         countries: Array,
         selectedGenres: Array,
         selectedCountries: Array,
+        pagePath: String,
     },
     data() {
         return {
@@ -52,7 +54,7 @@ export default {
     methods: {
         showSerials() {
             router.get(
-                "/",
+                this.pagePath,
                 {
                     checkedGenres: this.checkedGenres,
                     checkedCountries: this.checkedCountries,

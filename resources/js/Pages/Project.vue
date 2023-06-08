@@ -1,5 +1,5 @@
 <template>
-    <MainLayout :current-page="currentPage" :user="user">
+    <MainLayout :current-page="currentPage" :user="user" :folders="folders">
         <h1>Project Page</h1>
         <div>Название: {{ projectData[0].Name }}</div>
         <div>Автор: {{ projectData[0].Author }}</div>
@@ -18,6 +18,7 @@ export default {
         currentPage: String,
         projectData: Object,
         user: Object,
+        folders: Array,
     },
 };
 </script>

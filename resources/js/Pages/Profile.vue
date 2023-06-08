@@ -1,5 +1,5 @@
 <template>
-    <MainLayout :user="user">
+    <MainLayout :user="user" :folders="folders">
         <h1 class="title">Мой профиль</h1>
         <div class="container">
             <div class="wrapper">
@@ -118,6 +118,7 @@ export default {
     },
     props: {
         user: Object,
+        folders: Array,
     },
     methods: {
         saveProfile() {

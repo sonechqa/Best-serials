@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Project;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Folders;
 
 class ProjectController extends Controller
 {
@@ -17,6 +18,7 @@ class ProjectController extends Controller
             'currentPage' => 'project',
             'projectData' => $projectData,
             'user' => Auth::user(),
+            'folders' => Folders::all(),
         ]);
     }
 }

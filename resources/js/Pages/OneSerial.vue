@@ -1,5 +1,5 @@
 <template>
-    <MainLayout :user="user">
+    <MainLayout :user="user" :folders="folders">
         <SerialDescription :serial="serial" :folders="folders" />
     </MainLayout>
 </template>

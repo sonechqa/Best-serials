@@ -6,6 +6,7 @@ use App\Models\Countries;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Folders;
 
 class CountriesController extends Controller
 {
@@ -19,6 +20,7 @@ class CountriesController extends Controller
         return Inertia::render('AddCountry', [
             'countries' => Countries::all(),
             'user' => Auth::user(),
+            'folders' => Folders::all(),
         ]);
     }
 

@@ -1,5 +1,5 @@
 <template>
-    <MainLayout :user="user">
+    <MainLayout :user="user" :folders="folders">
         <h1>Добавление папки с фильмами</h1>
         <form @submit.prevent="postFolder">
             <div>
