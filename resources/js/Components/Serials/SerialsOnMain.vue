@@ -1,38 +1,51 @@
 <template>
-    <div class="serials" v-for="serial in serials" :key="serial.id">
-        <img :src="'/' + serial.Poster" alt="Постер сериала" />
-        <div class="properties">
+    <div class="serialsOnMain" v-for="serial in serials" :key="serial.id">
+        <img
+            :src="'/' + serial.Poster"
+            alt="Постер сериала"
+            class="serialsOnMain__img"
+        />
+        <div class="serialsOnMain__properties">
             <a :href="'/serials/' + serial.id">
-                <h3>{{ serial.Name }}</h3>
+                <h3 class="serialsOnMain__name">{{ serial.Name }}</h3>
             </a>
-            <div class="countries">
+            <div class="serialsOnMain__countries">
                 <div
                     v-for="(country, index) in serial.countries"
                     :key="country.id"
                 >
-                    {{ country.Name
-                    }}<span v-if="index != serial.countries.length - 1"
-                        >,&nbsp;</span
+                    {{ country.Name }}
+                    <span
+                        class="serialsOnMain__text"
+                        v-if="index != serial.countries.length - 1"
                     >
+                        ,&nbsp;
+                    </span>
                 </div>
             </div>
-            <p class="years">{{ serial.ReleaseYears }}</p>
-            <p><span>Режиссёры:&nbsp;</span>{{ serial.Directors }}</p>
-            <div class="genres">
-                <span>Жанры:&nbsp;</span>
+            <p class="serialsOnMain__years">{{ serial.ReleaseYears }}</p>
+            <p>
+                <span class="serialsOnMain__text">Режиссёры:&nbsp;</span
+                >{{ serial.Directors }}
+            </p>
+            <div class="serialsOnMain__genres">
+                <span class="serialsOnMain__text">Жанры:&nbsp;</span>
                 <div v-for="(genre, index) in serial.genres" :key="genre.id">
-                    {{ genre.Name
-                    }}<span v-if="index != serial.genres.length - 1"
-                        >,&nbsp;
+                    {{ genre.Name }}
+                    <span
+                        class="serialsOnMain__text"
+                        v-if="index != serial.genres.length - 1"
+                    >
+                        ,&nbsp;
                     </span>
                 </div>
             </div>
         </div>
         <p
-            class="rating"
+            class="serialsOnMain__rating"
             v-bind:class="{
-                green_rating: serial.Rating >= 7,
-                red_rating: serial.Rating < 7,
+                serialsOnMain__greenRating: serial.Rating >= 7,
+                serialsOnMain__redRating: serial.Rating < 7,
             }"
         >
             {{ serial.Rating }}
@@ -49,62 +62,59 @@ export default {
 };
 </script>
 
-<style scoped>
-.serials {
+<style scoped lang="scss">
+.serialsOnMain {
     display: flex;
     border-bottom: 1px inset black;
     padding-top: 40px;
     padding-bottom: 40px;
     padding-left: 30px;
-}
 
-img {
-    width: 160px;
-    height: 220px;
-}
+    &__img {
+        width: 160px;
+        height: 220px;
+    }
 
-.properties {
-    display: flex;
-    flex-direction: column;
-    margin-left: 30px;
-    justify-content: center;
-}
+    &__properties {
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+        justify-content: center;
+    }
 
-h3 {
-    margin-top: 0;
-    color: black;
-}
+    &__name {
+        margin-top: 0;
+        color: black;
+    }
 
-.countries {
-    display: flex;
-}
+    &__countries,
+    &__genres {
+        display: flex;
+    }
 
-.years {
-    margin-bottom: 0;
-}
+    &__text {
+        font-weight: 700;
+    }
 
-span {
-    font-weight: 700;
-}
+    &__years {
+        margin-bottom: 0;
+    }
 
-.genres {
-    display: flex;
-}
+    &__rating {
+        color: white;
+        width: 50px;
+        height: min-content;
+        text-align: center;
+        margin-left: auto;
+        margin-right: 30px;
+    }
 
-.rating {
-    color: white;
-    width: 50px;
-    height: min-content;
-    text-align: center;
-    margin-left: auto;
-    margin-right: 30px;
-}
+    &__greenRating {
+        background-color: rgb(4, 150, 4);
+    }
 
-.green_rating {
-    background-color: rgb(4, 150, 4);
-}
-
-.red_rating {
-    background-color: red;
+    &__redRating {
+        background-color: red;
+    }
 }
 </style>

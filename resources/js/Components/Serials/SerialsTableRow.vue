@@ -1,41 +1,76 @@
-<template>
-    <tr>
-        <td>
+<template class="serialsTableRow">
+    <tr class="serialsTableRow__tr">
+        <td class="serialsTableRow__td">
             <input type="text" v-model="Name" />
         </td>
-        <td>
-            <img :src="Poster" alt="Постер сериала" v-if="image == ''" />
-            <img :src="image" alt="Постер сериала" v-else />
+        <td class="serialsTableRow__td">
+            <img
+                :src="Poster"
+                alt="Постер сериала"
+                class="serialsTableRow__img"
+                v-if="image == ''"
+            />
+            <img
+                :src="image"
+                alt="Постер сериала"
+                class="serialsTableRow__img"
+                v-else
+            />
             <input
                 type="file"
                 accept="image/*"
-                class="file"
+                class="serialsTableRow__file"
                 @change="handleSelectedPoster"
             />
         </td>
-        <td>
-            <textarea cols="50" rows="7" v-model="Description"></textarea>
+        <td class="serialsTableRow__td">
+            <textarea
+                cols="50"
+                rows="7"
+                v-model="Description"
+                class="serialsTableRow__textarea"
+            ></textarea>
         </td>
-        <td>
-            <textarea rows="5" v-model="Directors"></textarea>
+        <td class="serialsTableRow__td">
+            <textarea
+                rows="5"
+                v-model="Directors"
+                class="serialsTableRow__textarea"
+            ></textarea>
         </td>
-        <td>
-            <input type="text" class="rating" v-model="Rating" />
+        <td class="serialsTableRow__td">
+            <input
+                type="text"
+                class="serialsTableRow__rating"
+                v-model="Rating"
+            />
         </td>
-        <td>
-            <input type="text" class="years" v-model="ReleaseYears" />
+        <td class="serialsTableRow__td">
+            <input
+                type="text"
+                class="serialsTableRow__years"
+                v-model="ReleaseYears"
+            />
         </td>
-        <td>
+        <td class="serialsTableRow__td">
             <SelectGenres v-model="Genres" />
         </td>
-        <td>
+        <td class="serialsTableRow__td">
             <SelectCountries v-model="Countries" />
         </td>
-        <div class="buttons">
-            <button type="button" class="saveSerial" @click="saveData">
+        <div class="serialsTableRow__buttons">
+            <button
+                type="button"
+                class="serialsTableRow__saveSerial"
+                @click="saveData"
+            >
                 Сохранить
             </button>
-            <button type="button" class="deleteSerial" @click="deleteSerial">
+            <button
+                type="button"
+                class="serialsTableRow__deleteSerial"
+                @click="deleteSerial"
+            >
                 Удалить сериал
             </button>
         </div>
@@ -109,60 +144,62 @@ export default {
 };
 </script>
 
-<style scoped>
-tr {
-    position: relative;
-}
+<style scoped lang="scss">
+.serialsTableRow {
+    &__tr {
+        position: relative;
+    }
 
-td {
-    padding: 3px;
-    border: 1px solid black;
-    text-align: center;
-}
+    &__td {
+        padding: 3px;
+        border: 1px solid black;
+        text-align: center;
+    }
 
-img {
-    width: 80px;
-    height: 120px;
-}
+    &__img {
+        width: 80px;
+        height: 120px;
+    }
 
-textarea {
-    resize: none;
-}
+    &__file {
+        cursor: pointer;
+    }
 
-.file {
-    cursor: pointer;
-}
+    &__textarea {
+        resize: none;
+    }
 
-.rating {
-    width: 60px;
-}
+    &__rating {
+        width: 60px;
+    }
 
-.years {
-    width: 100px;
-}
+    &__years {
+        width: 100px;
+    }
 
-.buttons {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
+    &__buttons {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 
-.saveSerial {
-    margin-left: 10px;
-    padding: 5px;
-    background-color: rgb(83, 184, 221);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    &__saveSerial {
+        margin-left: 10px;
+        padding: 5px;
+        background-color: rgb(83, 184, 221);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-.deleteSerial {
-    margin-left: 10px;
-    padding: 10px;
-    background-color: rgb(58, 198, 62);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    &__deleteSerial {
+        margin-left: 10px;
+        padding: 10px;
+        background-color: rgb(58, 198, 62);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 }
 </style>

@@ -1,9 +1,11 @@
-<template>
-    <h2>Заметили ошибку? Нажмите на ячейку и исправьте!</h2>
-    <table>
+<template class="existingCountries">
+    <h2 class="existingCountries__title">
+        Заметили ошибку? Нажмите на ячейку и исправьте!
+    </h2>
+    <table class="existingCountries__table">
         <thead>
             <tr>
-                <th>Название</th>
+                <th class="existingCountries__nameOfColumn">Название</th>
             </tr>
         </thead>
         <tbody>
@@ -30,20 +32,22 @@ export default {
 };
 </script>
 
-<style scoped>
-h2 {
-    text-align: center;
-}
+<style scoped lang="scss">
+.existingCountries {
+    &__title {
+        text-align: center;
+    }
 
-table {
-    border-collapse: collapse;
-    margin-top: 30px;
-    width: 30%;
-    margin-left: 50px;
-}
+    &__table {
+        border-collapse: collapse;
+        margin-top: 30px;
+        width: 30%;
+        margin-left: 50px;
+    }
 
-th {
-    padding: 3px;
-    border: 1px solid black;
+    &__nameOfColumn {
+        padding: 3px;
+        border: 1px solid black;
+    }
 }
 </style>

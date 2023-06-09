@@ -1,6 +1,6 @@
-<template>
-    <div class="container">
-        <div class="filters">
+<template class="allSerials">
+    <div class="allSerials__container container">
+        <div class="allSerials__filters">
             <slot />
             <GenresFilter
                 :genres="genres"
@@ -12,9 +12,15 @@
                 :selectedCountries="selectedCountries"
                 @update:modelValue="checkedCountries = $event"
             />
-            <button type="button" @click="showSerials">Показать</button>
+            <button
+                type="button"
+                class="allSerials__button"
+                @click="showSerials"
+            >
+                Показать
+            </button>
         </div>
-        <div class="wrapper">
+        <div>
             <SerialsOnMain
                 :serials="serials"
                 :genres="genres"
@@ -66,25 +72,27 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-    display: flex;
-    background-color: rgb(239, 231, 231);
-    padding-bottom: 40px;
-}
+<style scoped lang="scss">
+.allSerials {
+    &__container {
+        display: flex;
+        background-color: rgb(239, 231, 231);
+        padding-bottom: 40px;
+    }
 
-.filters {
-    padding-left: 30px;
-    padding-top: 40px;
-}
+    &__filters {
+        padding-left: 30px;
+        padding-top: 40px;
+    }
 
-button {
-    width: min-content;
-    height: min-content;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(126, 202, 72);
-    padding: 5px;
+    &__button {
+        width: min-content;
+        height: min-content;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(126, 202, 72);
+        padding: 5px;
+    }
 }
 </style>

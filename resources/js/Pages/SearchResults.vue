@@ -1,12 +1,14 @@
-<template>
+<template class="searchResults">
     <MainLayout :user="user" :folders="folders">
-        <div class="container">
-            <h1>Результаты поиска</h1>
+        <div class="searchResults__container container">
+            <h1 class="searchResults__title">Результаты поиска</h1>
             <SerialsOnMain :serials="serials" />
-            <div class="wrapper">
+            <div class="searchResults__wrapper">
                 <span>
                     Не нашли то, что искали? Перейдите на
-                    <a href="/addSerial">эту страницу</a>
+                    <a href="/addSerial" class="searchResults__link"
+                        >эту страницу</a
+                    >
                     и добавьте сериал!
                 </span>
             </div>
@@ -32,24 +34,26 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-    background-color: rgb(239, 231, 231);
-}
+<style scoped lang="scss">
+.searchResults {
+    &__container {
+        background-color: rgb(239, 231, 231);
+    }
 
-h1 {
-    padding-left: 30px;
-    margin-top: 30px;
-    margin-bottom: 0;
-}
+    &__title {
+        padding-left: 30px;
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
 
-.wrapper {
-    padding-left: 30px;
-    margin-top: 30px;
-    margin-bottom: 40px;
-}
+    &__wrapper {
+        padding-left: 30px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
 
-a {
-    color: black;
+    &__link {
+        color: black;
+    }
 }
 </style>

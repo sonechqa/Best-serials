@@ -1,28 +1,29 @@
 <template>
-    <div class="cont">
-        <div class="wrap">
-            <ul class="tags">
+    <div class="selectCountries">
+        <div class="selectCountries__wrapper">
+            <ul class="selectCountries__tags">
                 <li
-                    class="tag"
+                    class="selectCountries__tag selectCountries__li"
                     v-for="(selectedCountry, index) in selectedCountries"
                     :key="selectedCountry"
                 >
-                    <div class="countryName">{{ selectedCountry.Name }}</div>
+                    <div class="selectCountries__countryName">
+                        {{ selectedCountry.Name }}
+                    </div>
                     <div
-                        class="deleteCountry"
+                        class="selectCountries__deleteCountry"
                         @click="() => deleteCountry(index)"
                     >
                         <img
                             src="../../../images/close.png"
                             alt="Крестик для удаления"
-                            class="cross"
+                            class="selectCountries__cross"
                         />
                     </div>
                 </li>
-                <li class="addCountry">
+                <li class="selectCountries__li">
                     <input
                         type="string"
-                        class="type"
                         v-model="inputValue"
                         @focus="showVariants"
                         @blur="hideVariants"
@@ -32,12 +33,12 @@
             </ul>
         </div>
         <div
-            class="selectCountry"
+            class="selectCountries__selectCountry"
             v-show="variantsVisibility && suggestedCountries.length > 0"
         >
-            <ul class="vars">
+            <ul class="selectCountries__variants">
                 <li
-                    class="var"
+                    class="selectCountries__variant selectCountries__li"
                     v-for="suggestedCountry in suggestedCountries"
                     :key="suggestedCountry.id"
                     @click="() => selectCountry(suggestedCountry)"
@@ -98,59 +99,61 @@ export default {
 };
 </script>
 
-<style scoped>
-.wrap {
-    position: relative;
-    width: min-content;
-    margin-bottom: 0;
-}
+<style scoped lang="scss">
+.selectCountries {
+    &__wrapper {
+        position: relative;
+        width: min-content;
+        margin-bottom: 0;
+    }
 
-.tags {
-    padding-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    display: flex;
-}
+    &__tags {
+        padding-left: 5px;
+        margin-top: 0;
+        margin-bottom: 0;
+        display: flex;
+    }
 
-li {
-    list-style-type: none;
-}
+    &__tag {
+        width: min-content;
+        background-color: yellow;
+        margin-right: 5px;
+        padding: 3px;
+        display: flex;
+    }
 
-.tag {
-    display: flex;
-    width: min-content;
-    background-color: yellow;
-    margin-right: 5px;
-    padding: 3px;
-}
+    &__li {
+        list-style-type: none;
+    }
 
-.countryName {
-    margin-right: 5px;
-}
+    &__countryName {
+        margin-right: 5px;
+    }
 
-.deleteCountry {
-    cursor: pointer;
-}
+    &__deleteCountry {
+        cursor: pointer;
+    }
 
-.cross {
-    width: 8px;
-    height: 8px;
-}
+    &__cross {
+        width: 8px;
+        height: 8px;
+    }
 
-.selectCountry {
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-    background-color: white;
-}
+    &__selectCountry {
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+        background-color: white;
+    }
 
-.vars {
-    padding-left: 5px;
-    margin-top: 0;
-    margin-bottom: 0;
-}
+    &__variants {
+        padding-left: 5px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 
-.var {
-    cursor: pointer;
+    &__variant {
+        cursor: pointer;
+    }
 }
 </style>

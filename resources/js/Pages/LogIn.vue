@@ -1,28 +1,30 @@
-<template>
+<template class="logIn">
     <MainLayout :user="user">
-        <div class="container">
-            <h1 class="title">Авторизация</h1>
-            <form @submit.prevent="sendDataToLogIn">
-                <div class="login">
+        <div class="logIn__container container">
+            <h1 class="logIn__title">Авторизация</h1>
+            <form @submit.prevent="sendDataToLogIn" class="logIn__form">
+                <div class="logIn__wrapper">
                     <input
                         type="email"
                         placeholder="Почта"
                         v-model="form.email"
+                        class="logIn__field"
                     />
                 </div>
-                <div class="wrapperPassword">
-                    <div class="password">
+                <div class="logIn__wrapper">
+                    <div class="logIn__password">
                         <input
                             type="password"
                             placeholder="Пароль"
                             v-model="form.password"
+                            class="logIn__field"
                         />
                     </div>
-                    <div class="error" v-show="errors.message">
+                    <div class="logIn__error" v-show="errors.message">
                         {{ errors.message }}
                     </div>
                 </div>
-                <button type="submit">Войти</button>
+                <button type="submit" class="logIn__button">Войти</button>
             </form>
         </div>
     </MainLayout>
@@ -65,50 +67,51 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(239, 231, 231);
-}
+<style scoped lang="scss">
+.logIn {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(239, 231, 231);
+    }
 
-.title {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
+    &__title {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
 
-form {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-    text-align: center;
-}
+    &__form {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        text-align: center;
+    }
 
-.login,
-.wrapperPassword {
-    margin-bottom: 30px;
-}
+    &__wrapper {
+        margin-bottom: 30px;
+    }
 
-.error {
-    color: red;
-    margin-top: 5px;
-}
+    &__field {
+        outline: none;
+        width: 250px;
+        height: 40px;
+        font-size: 18px;
+    }
 
-input {
-    outline: none;
-    width: 250px;
-    height: 40px;
-    font-size: 18px;
-}
+    &__error {
+        color: red;
+        margin-top: 5px;
+    }
 
-button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: rgb(157, 151, 151);
-    padding: 10px 30px;
-    font-size: 16px;
+    &__button {
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: rgb(157, 151, 151);
+        padding: 10px 30px;
+        font-size: 16px;
+    }
 }
 </style>

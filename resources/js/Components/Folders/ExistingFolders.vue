@@ -1,9 +1,11 @@
-<template>
-    <h2>Заметили ошибку? Нажмите на ячейку и исправьте!</h2>
-    <table>
+<template class="existingFolders">
+    <h2 class="existingFolders__title">
+        Заметили ошибку? Нажмите на ячейку и исправьте!
+    </h2>
+    <table class="existingFolders__table">
         <thead>
             <tr>
-                <th>Название</th>
+                <th class="existingFolders__nameOfColumn">Название</th>
             </tr>
         </thead>
         <tbody>
@@ -31,19 +33,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-h2 {
-    text-align: center;
-}
+.existingFolders {
+    &__title {
+        text-align: center;
+    }
 
-table {
-    border-collapse: collapse;
-    margin-top: 30px;
-    width: 30%;
-    margin-left: 50px;
-}
+    &__table {
+        border-collapse: collapse;
+        margin-top: 30px;
+        width: 30%;
+        margin-left: 50px;
+    }
 
-th {
-    padding: 3px;
-    border: 1px solid black;
+    &__nameOfColumn {
+        padding: 3px;
+        border: 1px solid black;
+    }
 }
 </style>

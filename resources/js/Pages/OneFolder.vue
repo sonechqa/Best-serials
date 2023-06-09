@@ -1,4 +1,4 @@
-<template>
+<template class="oneFolder">
     <MainLayout :user="user" :folders="folders">
         <AllSerials
             :serials="serials"
@@ -8,13 +8,13 @@
             :selectedCountries="selectedCountries"
             :pagePath="'/folders/' + folder.id"
         >
-            <div class="folders">
-                <p>Папки:</p>
+            <div class="oneFolder__folders">
+                <p class="oneFolder__title">Папки:</p>
                 <a
                     v-for="folder in folders"
                     :key="folder.id"
                     :href="'/folders/' + folder.id"
-                    class="folder"
+                    class="oneFolder__folder"
                 >
                     {{ folder.Name }}
                 </a>
@@ -47,23 +47,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.folders {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
+.oneFolder {
+    &__folders {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
 
-p {
-    font-weight: 700;
-    margin-top: 0;
-}
+    &__title {
+        font-weight: 700;
+        margin-top: 0;
+    }
 
-.folder {
-    text-decoration: none;
-    color: black;
+    &__folder {
+        text-decoration: none;
+        color: black;
 
-    &:not(:last-child) {
-        margin-bottom: 5px;
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
     }
 }
 </style>

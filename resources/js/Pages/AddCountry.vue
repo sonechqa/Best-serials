@@ -1,12 +1,17 @@
-<template>
+<template class="addCountry">
     <MainLayout :user="user" :folders="folders">
-        <h1>Добавление страны в список</h1>
-        <form @submit.prevent="postCountry">
-            <div>
+        <h1 class="addCountry__title">Добавление страны в список</h1>
+        <form @submit.prevent="postCountry" class="addCountry__form">
+            <div class="addCountry__wrapper">
                 <label for="Name">Название: </label>
-                <input type="text" id="Name" v-model="Name" />
+                <input
+                    type="text"
+                    id="Name"
+                    v-model="Name"
+                    class="addCountry__field"
+                />
             </div>
-            <button>Добавить</button>
+            <button class="addCountry__button">Добавить</button>
         </form>
         <ExistingCountries :countries="countries" />
     </MainLayout>
@@ -43,24 +48,26 @@ export default {
 };
 </script>
 
-<style scoped>
-h1 {
-    text-align: center;
-}
+<style scoped lang="scss">
+.addCountry {
+    &__title {
+        text-align: center;
+    }
 
-form {
-    margin-left: 50px;
-}
+    &__form {
+        margin-left: 50px;
+    }
 
-div {
-    margin-bottom: 20px;
-}
+    &__wrapper {
+        margin-bottom: 20px;
+    }
 
-input {
-    outline: none;
-}
+    &__field {
+        outline: none;
+    }
 
-button {
-    cursor: pointer;
+    &__button {
+        cursor: pointer;
+    }
 }
 </style>

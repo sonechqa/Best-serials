@@ -1,25 +1,29 @@
 <template>
-    <div class="cont">
-        <div class="wrapper">
-            <ul class="tags">
+    <div class="selectGenres">
+        <div class="selectGenres__wrapper">
+            <ul class="selectGenres__tags">
                 <li
-                    class="tag"
+                    class="selectGenres__tag selectGenres__li"
                     v-for="(selectedGenre, index) in selectedGenres"
                     :key="selectedGenre"
                 >
-                    <div class="genreName">{{ selectedGenre.Name }}</div>
-                    <div class="deleteGenre" @click="() => deleteGenre(index)">
+                    <div class="selectGenres__genreName">
+                        {{ selectedGenre.Name }}
+                    </div>
+                    <div
+                        class="selectGenres__deleteGenre"
+                        @click="() => deleteGenre(index)"
+                    >
                         <img
                             src="../../../images/close.png"
                             alt="Крестик для удаления"
-                            class="cross"
+                            class="selectGenres__cross"
                         />
                     </div>
                 </li>
-                <li class="addGenre">
+                <li class="selectGenres__li">
                     <input
                         type="string"
-                        class="type"
                         v-model="inputValue"
                         @focus="showVariants"
                         @blur="hideVariants"
@@ -29,12 +33,12 @@
             </ul>
         </div>
         <div
-            class="selectGenre"
+            class="selectGenres__selectGenre"
             v-show="variantsVisibility && suggestedGenres.length > 0"
         >
-            <ul class="variants">
+            <ul class="selectGenres__variants">
                 <li
-                    class="variant"
+                    class="selectGenres__variant selectGenres__li"
                     v-for="suggestedGenre in suggestedGenres"
                     :key="suggestedGenre.id"
                     @click="() => selectGenre(suggestedGenre)"
@@ -95,59 +99,61 @@ export default {
 };
 </script>
 
-<style scoped>
-.wrapper {
-    position: relative;
-    width: min-content;
-    margin-bottom: 0;
-}
+<style scoped lang="scss">
+.selectGenres {
+    &__wrapper {
+        position: relative;
+        width: min-content;
+        margin-bottom: 0;
+    }
 
-.tags {
-    padding-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    display: flex;
-}
+    &__tags {
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        display: flex;
+    }
 
-li {
-    list-style-type: none;
-}
+    &__tag {
+        display: flex;
+        width: min-content;
+        background-color: yellow;
+        margin-right: 5px;
+        padding: 3px;
+    }
 
-.tag {
-    display: flex;
-    width: min-content;
-    background-color: yellow;
-    margin-right: 5px;
-    padding: 3px;
-}
+    &__li {
+        list-style-type: none;
+    }
 
-.genreName {
-    margin-right: 5px;
-}
+    &__genreName {
+        margin-right: 5px;
+    }
 
-.deleteGenre {
-    cursor: pointer;
-}
+    &__deleteGenre {
+        cursor: pointer;
+    }
 
-.cross {
-    width: 8px;
-    height: 8px;
-}
+    &__cross {
+        width: 8px;
+        height: 8px;
+    }
 
-.selectGenre {
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-    background-color: white;
-}
+    &__selectGenre {
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+        background-color: white;
+    }
 
-.variants {
-    padding-left: 5px;
-    margin-top: 0;
-    margin-bottom: 0;
-}
+    &__variants {
+        padding-left: 5px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 
-.variant {
-    cursor: pointer;
+    &__variant {
+        cursor: pointer;
+    }
 }
 </style>

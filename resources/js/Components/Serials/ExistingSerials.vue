@@ -1,16 +1,18 @@
-<template>
-    <h2>Заметили ошибку? Нажмите на ячейку и исправьте!</h2>
-    <table>
+<template class="existingSerials">
+    <h2 class="existingSerials__title">
+        Заметили ошибку? Нажмите на ячейку и исправьте!
+    </h2>
+    <table class="existingSerials__table">
         <thead>
             <tr>
-                <th>Название</th>
-                <th>Постер</th>
-                <th>Описание</th>
-                <th>Режиссёры</th>
-                <th>Рейтинг</th>
-                <th>Годы выхода</th>
-                <th>Жанры</th>
-                <th>Страны</th>
+                <th class="existingSerials__nameOfColumn">Название</th>
+                <th class="existingSerials__nameOfColumn">Постер</th>
+                <th class="existingSerials__nameOfColumn">Описание</th>
+                <th class="existingSerials__nameOfColumn">Режиссёры</th>
+                <th class="existingSerials__nameOfColumn">Рейтинг</th>
+                <th class="existingSerials__nameOfColumn">Годы выхода</th>
+                <th class="existingSerials__nameOfColumn">Жанры</th>
+                <th class="existingSerials__nameOfColumn">Страны</th>
             </tr>
         </thead>
         <tbody>
@@ -37,20 +39,22 @@ export default {
 };
 </script>
 
-<style scoped>
-h2 {
-    text-align: center;
-}
+<style scoped lang="scss">
+.existingSerials {
+    &__title {
+        text-align: center;
+    }
 
-table {
-    border-collapse: collapse;
-    margin-top: 30px;
-    width: 90%;
-    margin-left: 40px;
-}
+    &__table {
+        border-collapse: collapse;
+        margin-top: 30px;
+        width: 90%;
+        margin-left: 40px;
+    }
 
-th {
-    padding: 3px;
-    border: 1px solid black;
+    &__nameOfColumn {
+        padding: 3px;
+        border: 1px solid black;
+    }
 }
 </style>

@@ -1,33 +1,43 @@
-<template>
+<template class="register">
     <MainLayout :user="user" :folders="folders">
-        <div class="container">
-            <h1 class="title">Регистрация</h1>
-            <form @submit.prevent="registerUser">
-                <div class="name">
-                    <input type="text" placeholder="Имя" v-model="form.name" />
+        <div class="register__container container">
+            <h1 class="register__title">Регистрация</h1>
+            <form @submit.prevent="registerUser" class="register__form">
+                <div class="register__wrapper">
+                    <input
+                        type="text"
+                        placeholder="Имя"
+                        v-model="form.name"
+                        class="register__field"
+                    />
                 </div>
-                <div class="login">
+                <div class="register__wrapper">
                     <input
                         type="email"
                         placeholder="Почта"
                         v-model="form.email"
+                        class="register__field"
                     />
                 </div>
-                <div class="password">
+                <div class="register__wrapper">
                     <input
                         type="password"
                         placeholder="Пароль"
                         v-model="form.password"
+                        class="register__field"
                     />
                 </div>
-                <div class="password_confirmation">
+                <div class="register__wrapper">
                     <input
                         type="password"
                         placeholder="Подтверждение пароля"
                         v-model="form.password_confirmation"
+                        class="register__field"
                     />
                 </div>
-                <button type="submit">Зарегистрироваться</button>
+                <button type="submit" class="register__button">
+                    Зарегистрироваться
+                </button>
             </form>
         </div>
     </MainLayout>
@@ -67,47 +77,46 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(239, 231, 231);
-}
+<style scoped lang="scss">
+.register {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(239, 231, 231);
+    }
 
-.title {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
+    &__title {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
 
-form {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-    text-align: center;
-}
+    &__form {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        text-align: center;
+    }
 
-.name,
-.login,
-.password,
-.password_confirmation {
-    margin-bottom: 30px;
-}
+    &__wrapper {
+        margin-bottom: 30px;
+    }
 
-input {
-    outline: none;
-    width: 250px;
-    height: 40px;
-    font-size: 18px;
-}
+    &__field {
+        outline: none;
+        width: 250px;
+        height: 40px;
+        font-size: 18px;
+    }
 
-button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: rgb(157, 151, 151);
-    padding: 10px 30px;
-    font-size: 16px;
+    &__button {
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: rgb(157, 151, 151);
+        padding: 10px 30px;
+        font-size: 16px;
+    }
 }
 </style>

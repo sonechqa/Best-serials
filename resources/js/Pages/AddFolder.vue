@@ -1,12 +1,17 @@
-<template>
+<template class="addFolder">
     <MainLayout :user="user" :folders="folders">
-        <h1>Добавление папки с фильмами</h1>
-        <form @submit.prevent="postFolder">
-            <div>
+        <h1 class="addFolder__title">Добавление папки с фильмами</h1>
+        <form @submit.prevent="postFolder" class="addFolder__form">
+            <div class="addFolder__wrapper">
                 <label for="Name">Название: </label>
-                <input type="text" id="Name" v-model="Name" />
+                <input
+                    type="text"
+                    id="Name"
+                    v-model="Name"
+                    class="addFolder__field"
+                />
             </div>
-            <button>Добавить</button>
+            <button class="addFolder__button">Добавить</button>
         </form>
         <ExistingFolders :folders="folders" />
     </MainLayout>
@@ -43,23 +48,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
-h1 {
-    text-align: center;
-}
+.addFolder {
+    &__title {
+        text-align: center;
+    }
 
-form {
-    margin-left: 50px;
-}
+    &__form {
+        margin-left: 50px;
+    }
 
-div {
-    margin-bottom: 20px;
-}
+    &__wrapper {
+        margin-bottom: 20px;
+    }
 
-input {
-    outline: none;
-}
+    &__field {
+        outline: none;
+    }
 
-button {
-    cursor: pointer;
+    &__button {
+        cursor: pointer;
+    }
 }
 </style>

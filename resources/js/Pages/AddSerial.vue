@@ -1,83 +1,70 @@
-<script setup>
-import MainLayout from "../Layouts/MainLayout.vue";
-import { reactive } from "vue";
-import { router } from "@inertiajs/vue3";
-import ExistingSerials from "../Components/Serials/ExistingSerials.vue";
-import SelectGenres from "../Components/Genres/SelectGenres.vue";
-import SelectCountries from "../Components/Countries/SelectCountries.vue";
-
-const form = reactive({
-    Poster: null,
-    Name: null,
-    Description: null,
-    Directors: null,
-    Rating: null,
-    ReleaseYears: null,
-    Genres: [],
-    Countries: [],
-});
-
-function submit() {
-    const newForm = { ...form };
-    newForm.Genres = form.Genres.map((genre) => genre.id);
-    newForm.Countries = form.Countries.map((country) => country.id);
-    router.post("/addSerial", newForm);
-}
-
-defineProps({
-    serials: Array,
-    user: Object,
-    folders: Array,
-});
-</script>
-
-<template>
+<template class="addSerial">
     <MainLayout :user="user" :folders="folders">
-        <h1>Добавление сериала в список</h1>
-        <form @submit.prevent="submit">
-            <div class="wrapperFor">
+        <h1 class="addSerial__title">Добавление сериала в список</h1>
+        <form @submit.prevent="sendSerial" class="addSerial__form">
+            <div class="addSerial__wrapper">
                 <label for="Name">Название: </label>
-                <input type="text" id="Name" v-model="form.Name" />
+                <input
+                    type="text"
+                    id="Name"
+                    v-model="form.Name"
+                    class="addSerial__field"
+                />
             </div>
-            <div class="wrapperFor">
+            <div class="addSerial__wrapper">
                 <label for="Poster">Постер: </label>
-                <input type="text" id="Poster" v-model="form.Poster" />
+                <input
+                    type="text"
+                    id="Poster"
+                    v-model="form.Poster"
+                    class="addSerial__field"
+                />
             </div>
-            <div class="wrapperFor">
+            <div class="addSerial__wrapper">
                 <label for="Description">Описание: </label>
                 <input
                     type="text"
                     id="Description"
                     v-model="form.Description"
+                    class="addSerial__field"
                 />
             </div>
-            <div class="wrapperFor">
+            <div class="addSerial__wrapper">
                 <label for="Directors">Режиссёры: </label>
-                <input type="text" id="Directors" v-model="form.Directors" />
+                <input
+                    type="text"
+                    id="Directors"
+                    v-model="form.Directors"
+                    class="addSerial__field"
+                />
             </div>
-            <div class="wrapperFor">
+            <div class="addSerial__wrapper">
                 <label for="Rating">Рейтинг: </label>
                 <input
                     type="number"
                     step="0.1"
                     id="Rating"
                     v-model="form.Rating"
+                    class="addSerial__field"
                 />
             </div>
-            <div class="wrapperFor">
+            <div class="addSerial__wrapper">
                 <label for="ReleaseYears">Годы выхода: </label>
                 <input
                     type="string"
                     id="ReleaseYears"
                     v-model="form.ReleaseYears"
+                    class="addSerial__field"
                 />
             </div>
-            <div class="wrapperFor wrapperForGenres">
-                <label for="Genres" class="genres">Жанры: </label>
+            <div class="addSerial__wrapper addSerial__wrapperForGenres">
+                <label for="Genres" class="addSerial__genres">Жанры: </label>
                 <SelectGenres id="Genres" v-model="form.Genres" />
             </div>
-            <div class="wrapperFor wrapperForCountries">
-                <label for="Countries" class="countries">Страны: </label>
+            <div class="addSerial__wrapper addSerial__wrapperForCountries">
+                <label for="Countries" class="addSerial__countries"
+                    >Страны:
+                </label>
                 <SelectCountries id="Countries" v-model="form.Countries" />
             </div>
             <button>Добавить</button>
@@ -86,36 +73,85 @@ defineProps({
     </MainLayout>
 </template>
 
-<style scoped>
-h1 {
-    text-align: center;
-}
+<script>
+import MainLayout from "../Layouts/MainLayout.vue";
+import { router } from "@inertiajs/vue3";
+import SelectGenres from "../Components/Genres/SelectGenres.vue";
+import SelectCountries from "../Components/Countries/SelectCountries.vue";
+import ExistingSerials from "../Components/Serials/ExistingSerials.vue";
 
-form {
-    margin-left: 50px;
-}
+export default {
+    name: "AddSerial",
+    components: {
+        MainLayout,
+        SelectGenres,
+        SelectCountries,
+        ExistingSerials,
+    },
+    props: {
+        serials: Array,
+        user: Object,
+        folders: Array,
+    },
+    data() {
+        return {
+            form: {
+                Poster: "",
+                Name: "",
+                Description: "",
+                Directors: "",
+                Rating: "",
+                ReleaseYears: "",
+                Genres: [],
+                Countries: [],
+            },
+        };
+    },
+    methods: {
+        sendSerial() {
+            const newForm = { ...form };
+            newForm.Genres = form.Genres.map((genre) => genre.id);
+            newForm.Countries = form.Countries.map((country) => country.id);
+            router.post("/addSerial", newForm);
+        },
+    },
+};
+</script>
 
-.wrapperForGenres {
-    display: flex;
-}
+<style scoped lang="scss">
+.addSerial {
+    &__title {
+        text-align: center;
+    }
 
-.genres {
-    margin-right: 5px;
-}
+    &__form {
+        margin-left: 50px;
+    }
 
-.wrapperForCountries {
-    display: flex;
-}
+    &__wrapper {
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
 
-.countries {
-    margin-right: 5px;
-}
+    &__field {
+        outline: none;
+    }
 
-input {
-    outline: none;
-}
+    &__wrapperForGenres {
+        display: flex;
+    }
 
-.wrapperFor:not(:last-child) {
-    margin-bottom: 20px;
+    &__genres {
+        margin-right: 5px;
+    }
+
+    &__wrapperForCountries {
+        display: flex;
+    }
+
+    &__countries {
+        margin-right: 5px;
+    }
 }
 </style>

@@ -1,25 +1,29 @@
-<template>
-    <div class="container">
-        <div class="wrapper">
-            <div class="posterAndFolder">
+<template class="serialDescription">
+    <div class="serialDescription__container container">
+        <div class="serialDescription__wrapper">
+            <div class="serialDescription__posterAndFolder">
                 <img
                     :src="'/' + serial.Poster"
                     alt="Постер сериала"
-                    class="poster"
+                    class="serialDescription__poster"
                 />
-                <div class="wrap">
-                    <button type="button" class="addToFolder" @click="toggle">
+                <div class="serialDescription__wrapperForFolders">
+                    <button
+                        type="button"
+                        class="serialDescription__addToFolder"
+                        @click="toggle"
+                    >
                         Добавить в папку
                     </button>
                     <div
-                        class="folders"
+                        class="serialDescription__folders"
                         v-if="foldersVisibility"
                         v-click-away="away"
                     >
                         <span
                             v-for="(folder, index) in folders"
                             :key="folder"
-                            class="folder"
+                            class="serialDescription__folder"
                             @click="() => attach(index)"
                         >
                             {{ folder.Name }}
@@ -27,11 +31,11 @@
                     </div>
                 </div>
             </div>
-            <div class="properties">
-                <h1>{{ serial.Name }}</h1>
+            <div class="serialDescription__properties">
+                <h1 class="serialDescription__name">{{ serial.Name }}</h1>
                 <h3>О сериале</h3>
-                <p class="years">Год выхода: {{ serial.ReleaseYears }}</p>
-                <div class="countries">
+                <p>Год выхода: {{ serial.ReleaseYears }}</p>
+                <div class="serialDescription__countries">
                     <span>Страна:&nbsp;</span>
                     <div
                         v-for="(country, index) in serial.countries"
@@ -43,7 +47,7 @@
                         >
                     </div>
                 </div>
-                <div class="genres">
+                <div class="serialDescription__genres">
                     <span>Жанры:&nbsp;</span>
                     <div
                         v-for="(genre, index) in serial.genres"
@@ -55,18 +59,18 @@
                         </span>
                     </div>
                 </div>
-                <p class="directors">Режиссёры: {{ serial.Directors }}</p>
+                <p>Режиссёры: {{ serial.Directors }}</p>
             </div>
             <span
-                class="rating"
+                class="serialDescription__rating"
                 v-bind:class="{
-                    green: serial.Rating >= 7,
-                    red: serial.Rating < 7,
+                    serialDescription__greenRating: serial.Rating >= 7,
+                    serialDescription__redRating: serial.Rating < 7,
                 }"
                 >{{ serial.Rating }}
             </span>
         </div>
-        <div class="description">
+        <div class="serialDescription__description">
             <h3>Описание сериала</h3>
             <div>{{ serial.Description }}</div>
         </div>
@@ -108,105 +112,106 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-    background-color: white;
-    padding: 50px;
-}
-
-.wrapper {
-    display: flex;
-    border-bottom: 1px inset black;
-    padding-bottom: 50px;
-}
-
-.posterAndFolder {
-    display: flex;
-    flex-direction: column;
-}
-
-.poster {
-    width: 300px;
-    height: 450px;
-    margin-bottom: 50px;
-}
-
-.wrap {
-    position: relative;
-}
-
-.addToFolder {
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: rgb(186, 174, 174);
-    transition: background-color 0.3s;
-    width: 100%;
-
-    &:hover {
-        background-color: rgb(202, 194, 194);
-        transition: background-color 0.3s;
+.serialDescription {
+    &__container {
+        background-color: white;
+        padding: 50px;
     }
-}
 
-.folders {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid gray;
-    border-radius: 5px;
-    margin-top: 5px;
-    position: absolute;
-    width: 100%;
-    background-color: white;
-}
-
-.folder {
-    cursor: pointer;
-    padding: 10px;
-    transition: background-color 0.3s;
-
-    &:hover {
-        background-color: rgb(211, 209, 209);
-        transition: background-color 0.3s;
+    &__wrapper {
+        display: flex;
+        border-bottom: 1px inset black;
+        padding-bottom: 50px;
     }
-}
 
-.properties {
-    margin-left: 40px;
-}
+    &__posterAndFolder {
+        display: flex;
+        flex-direction: column;
+    }
 
-h1 {
-    margin-top: 0;
-}
+    &__poster {
+        width: 300px;
+        height: 450px;
+        margin-bottom: 50px;
+    }
 
-.countries {
-    display: flex;
-    margin-bottom: 16px;
-}
+    &__wrapperForFolders {
+        position: relative;
+    }
 
-.genres {
-    display: flex;
-}
+    &__addToFolder {
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: rgb(186, 174, 174);
+        transition: background-color 0.3s;
+        width: 100%;
 
-.rating {
-    font-size: 20px;
-    width: 50px;
-    height: min-content;
-    text-align: center;
-    margin-left: auto;
-    margin-right: 30px;
-}
+        &:hover {
+            background-color: rgb(202, 194, 194);
+            transition: background-color 0.3s;
+        }
+    }
 
-.rating.green {
-    color: rgb(4, 150, 4);
-}
+    &__folders {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid gray;
+        border-radius: 5px;
+        margin-top: 5px;
+        position: absolute;
+        background-color: white;
+    }
 
-.rating.red {
-    color: red;
-}
+    &__folder {
+        cursor: pointer;
+        padding: 10px;
+        transition: background-color 0.3s;
 
-.description {
-    width: 700px;
-    line-height: 25px;
+        &:hover {
+            background-color: rgb(211, 209, 209);
+            transition: background-color 0.3s;
+        }
+    }
+
+    &__properties {
+        margin-left: 40px;
+    }
+
+    &__name {
+        margin-top: 0;
+    }
+
+    &__countries {
+        display: flex;
+        margin-bottom: 16px;
+    }
+
+    &__genres {
+        display: flex;
+    }
+
+    &__rating {
+        font-size: 20px;
+        width: 50px;
+        height: min-content;
+        text-align: center;
+        margin-left: auto;
+        margin-right: 30px;
+    }
+
+    &__greenRating {
+        color: rgb(4, 150, 4);
+    }
+
+    &__redRating {
+        color: red;
+    }
+
+    &__description {
+        width: 700px;
+        line-height: 25px;
+    }
 }
 </style>
