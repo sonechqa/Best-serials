@@ -67,7 +67,7 @@
                 </label>
                 <SelectCountries id="Countries" v-model="form.Countries" />
             </div>
-            <button>Добавить</button>
+            <button class="addSerial__button">Добавить</button>
         </form>
         <ExistingSerials :serials="serials" />
     </MainLayout>
@@ -138,20 +138,26 @@ export default {
         outline: none;
     }
 
-    &__wrapperForGenres {
+    &__wrapperForGenres,
+    &__wrapperForCountries {
         display: flex;
+        width: min-content;
     }
 
     &__genres {
         margin-right: 5px;
     }
 
-    &__wrapperForCountries {
-        display: flex;
-    }
-
     &__countries {
         margin-right: 5px;
+    }
+
+    &__button {
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(225, 125, 53);
+        padding: 8px;
     }
 }
 </style>

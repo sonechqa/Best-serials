@@ -24,6 +24,7 @@
                 <li class="selectGenres__li">
                     <input
                         type="string"
+                        class="selectGenres__field"
                         v-model="inputValue"
                         @focus="showVariants"
                         @blur="hideVariants"
@@ -101,6 +102,8 @@ export default {
 
 <style scoped lang="scss">
 .selectGenres {
+    position: relative;
+
     &__wrapper {
         position: relative;
         width: min-content;
@@ -139,11 +142,18 @@ export default {
         height: 8px;
     }
 
+    &__field {
+        outline: none;
+    }
+
     &__selectGenre {
         border-left: 1px solid black;
         border-bottom: 1px solid black;
         border-right: 1px solid black;
         background-color: white;
+        position: absolute;
+        z-index: 5;
+        width: 99%;
     }
 
     &__variants {

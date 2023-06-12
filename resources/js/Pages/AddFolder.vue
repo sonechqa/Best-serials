@@ -67,6 +67,10 @@ export default {
 
     &__button {
         cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(225, 125, 53);
+        padding: 8px;
     }
 }
 </style>

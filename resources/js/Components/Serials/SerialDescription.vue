@@ -161,6 +161,7 @@ export default {
         border-radius: 5px;
         margin-top: 5px;
         position: absolute;
+        width: 100%;
         background-color: white;
     }
 

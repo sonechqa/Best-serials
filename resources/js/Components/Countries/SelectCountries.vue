@@ -24,6 +24,7 @@
                 <li class="selectCountries__li">
                     <input
                         type="string"
+                        class="selectCountries__field"
                         v-model="inputValue"
                         @focus="showVariants"
                         @blur="hideVariants"
@@ -101,6 +102,8 @@ export default {
 
 <style scoped lang="scss">
 .selectCountries {
+    position: relative;
+
     &__wrapper {
         position: relative;
         width: min-content;
@@ -108,7 +111,7 @@ export default {
     }
 
     &__tags {
-        padding-left: 5px;
+        padding-left: 0;
         margin-top: 0;
         margin-bottom: 0;
         display: flex;
@@ -139,11 +142,18 @@ export default {
         height: 8px;
     }
 
+    &__field {
+        outline: none;
+    }
+
     &__selectCountry {
         border-left: 1px solid black;
         border-bottom: 1px solid black;
         border-right: 1px solid black;
         background-color: white;
+        position: absolute;
+        z-index: 5;
+        width: 99%;
     }
 
     &__variants {
