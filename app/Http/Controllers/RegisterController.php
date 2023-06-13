@@ -30,5 +30,12 @@ class RegisterController extends Controller
             'email' => $req->email,
             'password' => Hash::make($req->password),
         ]);
+
+        // $folders = Folders::insert(['Name' => 'Буду смотреть'], ['Name' => 'Избранное'], ['Name' => 'Любимые сериалы']);
+        $folderOne = Folders::create(['Name' => 'Буду смотреть', 'users_id' => $user->id]);
+        $folderTwo = Folders::create(['Name' => 'Избранное', 'users_id' => $user->id]);
+        $folderThree = Folders::create(['Name' => 'Любимые сериалы', 'users_id' => $user->id]);
+
+        return to_route('profile');
     }
 }

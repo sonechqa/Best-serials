@@ -10,10 +10,15 @@ class Folders extends Model
 {
     use HasFactory;
     protected $table = 'folders';
-    protected $fillable = ['Name'];
+    protected $fillable = ['Name', 'users_id'];
     public $timestamps = false;
 
     public function serials() {
         return $this->belongsToMany(Serials::class);
+    }
+
+    public function user()
+    {
+      return $this->belongsTo(Users::class);
     }
 }
