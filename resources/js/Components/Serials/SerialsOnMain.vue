@@ -70,6 +70,10 @@ export default {
     padding-bottom: 40px;
     padding-left: 30px;
 
+    &:last-child {
+        border-bottom: none;
+    }
+
     &__img {
         width: 160px;
         height: 220px;

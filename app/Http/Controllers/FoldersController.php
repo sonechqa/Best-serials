@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Folders;
 use App\Models\Serials;
 use App\Services\FilterService;
+use App\Models\User;
 
 class FoldersController extends Controller
 {
@@ -18,16 +19,20 @@ class FoldersController extends Controller
     }
 
     public function renderFolders() {
+        $id = Auth::id();
         return Inertia::render('AddFolder', [
-            'folders' => Folders::all(),
+            'folders' => Folders::where('user_id', $id)->get(),
             'user' => Auth::user(),
         ]);
     }
 
     public function addFolders(Request $req) {
-        $folder = Folders::create($req->validate([
-            'Name' => ['required'],
-        ]));
+        $users = User::all();
+        foreach ($users as $user) {
+            $folder = $user->folders()->create($req->validate([
+                'Name' => ['required'],
+            ]));
+        }
         return to_route('addFolder');
     }
 

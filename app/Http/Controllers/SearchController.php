@@ -12,10 +12,11 @@ class SearchController extends Controller
 {
     public function search(Request $req) {
         $search = $req->get('search');
+        $id = Auth::id();
         return Inertia::render('SearchResults', [
             'serials' => Serials::where('Name', 'LIKE', $search.'%')->with('genres', 'countries')->get(),
             'user' => Auth::user(),
-            'folders' => Folders::all(),
+            'folders' => Folders::where('user_id', $id)->get(),
         ]);
     }
 }

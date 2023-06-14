@@ -35,6 +35,7 @@ class FilterService {
 
     public function withFilters($selectedGenres = null, $selectedCountries = null, $folderId = null) {
         $serials = $this->serialsWithParams($selectedGenres, $selectedCountries, $folderId);
+        $id = Auth::id();
         return [
             'serials' => $serials,
             'genres' => Genres::all(),
@@ -42,7 +43,7 @@ class FilterService {
             'selectedGenres' => $selectedGenres,
             'selectedCountries' => $selectedCountries,
             'user' => Auth::user(),
-            'folders' => Folders::all(),
+            'folders' => Folders::where('user_id', $id)->get(),
             'folder' => Folders::where('id', $folderId)->first(),
         ];
     }

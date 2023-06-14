@@ -12,9 +12,10 @@ use App\Models\Folders;
 class ProfileController extends Controller
 {
     public function profile() {
+        $id = Auth::id();
         return Inertia::render('Profile', [
             'user' => Auth::user(),
-            'folders' => Folders::all(),
+            'folders' => Folders::where('user_id', $id)->get(),
         ]);
     }
 

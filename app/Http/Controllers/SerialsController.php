@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Auth;
 class SerialsController extends Controller
 {
     public function serials() {
+        $id = Auth::id();
         return Inertia::render('AddSerial', [
             'serials' => Serials::with('genres', 'countries')->get(),
             'user' => Auth::user(),
-            'folders' => Folders::all(),
+            'folders' => Folders::where('user_id', $id)->get(),
         ]);
     }
 
@@ -66,10 +67,11 @@ class SerialsController extends Controller
     }
 
     public function showSerialPage(string $id) {
+        $userId = Auth::id();
         return Inertia::render('OneSerial', [
             'serial' => Serials::where('id', $id)->with('genres', 'countries')->first(),
             'user' => Auth::user(),
-            'folders' => Folders::all(),
+            'folders' => Folders::where('user_id', $userId)->get(),
         ]);
     }
 

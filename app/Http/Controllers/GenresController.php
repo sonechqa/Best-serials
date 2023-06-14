@@ -17,10 +17,11 @@ class GenresController extends Controller
     }
 
     public function renderGenres() {
+        $id = Auth::id();
         return Inertia::render('AddGenre', [
             'genres' => Genres::all(),
             'user' => Auth::user(),
-            'folders' => Folders::all(),
+            'folders' => Folders::where('user_id', $id)->get(),
         ]);
     }
 

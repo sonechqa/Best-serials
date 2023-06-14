@@ -17,10 +17,11 @@ class CountriesController extends Controller
     }
 
     public function renderCountries() {
+        $id = Auth::id();
         return Inertia::render('AddCountry', [
             'countries' => Countries::all(),
             'user' => Auth::user(),
-            'folders' => Folders::all(),
+            'folders' => Folders::where('user_id', $id)->get(),
         ]);
     }
 

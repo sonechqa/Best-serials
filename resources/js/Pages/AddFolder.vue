@@ -20,7 +20,7 @@
 <script>
 import MainLayout from "../Layouts/MainLayout.vue";
 import ExistingFolders from "../Components/Folders/ExistingFolders.vue";
-import axios from "axios";
+import { router } from "@inertiajs/vue3";
 
 export default {
     name: "AddFolder",
@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         postFolder() {
-            axios.post("/addFolder", {
+            router.post("/addFolder", {
                 Name: this.Name,
             });
         },
