@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Services\FilterService;
 use App\Models\Folders;
 use App\Models\Serials;
-use App\Services\FilterService;
 use App\Models\User;
 
 class FoldersController extends Controller
@@ -20,6 +20,7 @@ class FoldersController extends Controller
 
     public function renderFolders() {
         $id = Auth::id();
+
         return Inertia::render('AddFolder', [
             'folders' => Folders::where('user_id', $id)->get(),
             'user' => Auth::user(),
@@ -28,22 +29,26 @@ class FoldersController extends Controller
 
     public function addFolders(Request $req) {
         $users = User::all();
+
         foreach ($users as $user) {
             $folder = $user->folders()->create($req->validate([
                 'Name' => ['required'],
             ]));
         }
+
         return to_route('addFolder');
     }
 
     public function updateFolder(Request $req) {
         $folder = Folders::where('id', $req->get('id'))->first();
         $folder->update(array('Name' => $req->get('Name')));
+
         return to_route('addFolder');
     }
 
     public function deleteFolder(Request $req) {
-        $folder = Folders::where('id', $req->get('id'))->delete();
+        $folder = Folders::where('Name', $req->get('Name'))->delete();
+
         return to_route('addFolder');
     }
 
@@ -56,6 +61,7 @@ class FoldersController extends Controller
     public function renderOneFolder(string $id, Request $req) {
         $selectedGenres = $req->get('checkedGenres');
         $selectedCountries = $req->get('checkedCountries');
+        
         return Inertia::render('OneFolder', $this->filterService->withFilters($selectedGenres, $selectedCountries, $id));
     }
 }

@@ -14,11 +14,13 @@ class ProjectController extends Controller
 {
     public function project() {
         $projectData = Project::all();
+        $id = Auth::id();
+
         return Inertia::render('Project', [
             'currentPage' => 'project',
             'projectData' => $projectData,
             'user' => Auth::user(),
-            'folders' => Folders::all(),
+            'folders' => Folders::where('user_id', $id)->get(),
         ]);
     }
 }

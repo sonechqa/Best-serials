@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Countries;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Countries;
 use App\Models\Folders;
 
 class CountriesController extends Controller
@@ -18,6 +18,7 @@ class CountriesController extends Controller
 
     public function renderCountries() {
         $id = Auth::id();
+
         return Inertia::render('AddCountry', [
             'countries' => Countries::all(),
             'user' => Auth::user(),
@@ -29,6 +30,7 @@ class CountriesController extends Controller
         $country = Countries::create($req->validate([
             'Name' => ['required'],
         ]));
+        
         return to_route('addCountry');
     }
 

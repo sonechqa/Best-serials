@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use App\Models\User;
 use App\Models\Folders;
 
 class ProfileController extends Controller
 {
     public function profile() {
         $id = Auth::id();
+
         return Inertia::render('Profile', [
             'user' => Auth::user(),
             'folders' => Folders::where('user_id', $id)->get(),
@@ -46,6 +47,7 @@ class ProfileController extends Controller
         $user = User::find(Auth::user()->id);
         Auth::logout();
         $user->delete();
+
         return to_route('home');
     }
 
@@ -60,6 +62,7 @@ class ProfileController extends Controller
 
         $user->Photo = "";
         $user->save();
+        
         return to_route('profile');
     }
 }

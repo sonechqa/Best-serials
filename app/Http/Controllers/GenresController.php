@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Genres;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Genres;
 use App\Models\Folders;
 
 class GenresController extends Controller
@@ -18,6 +18,7 @@ class GenresController extends Controller
 
     public function renderGenres() {
         $id = Auth::id();
+
         return Inertia::render('AddGenre', [
             'genres' => Genres::all(),
             'user' => Auth::user(),
@@ -29,6 +30,7 @@ class GenresController extends Controller
         $genre = Genres::create($req->validate([
             'Name' => ['required'],
         ]));
+        
         return to_route('addGenre');
     }
 

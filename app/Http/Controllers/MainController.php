@@ -17,6 +17,7 @@ class MainController extends Controller
     public function home(Request $req) {
         $selectedGenres = $req->get('checkedGenres');
         $selectedCountries = $req->get('checkedCountries');
+        
         return Inertia::render('Home', $this->filterService->withFilters($selectedGenres, $selectedCountries));
     }
 }

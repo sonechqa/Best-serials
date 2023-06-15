@@ -44,7 +44,7 @@ export default {
         },
         deleteFolder() {
             router.post("/deleteFolder", {
-                id: this.folder.id,
+                Name: this.Name,
             });
         },
     },

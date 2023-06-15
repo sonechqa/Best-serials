@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Serials;
-use App\Models\Folders;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Serials;
+use App\Models\Folders;
 
 class SerialsController extends Controller
 {
     public function serials() {
         $id = Auth::id();
+
         return Inertia::render('AddSerial', [
             'serials' => Serials::with('genres', 'countries')->get(),
             'user' => Auth::user(),
@@ -68,6 +69,7 @@ class SerialsController extends Controller
 
     public function showSerialPage(string $id) {
         $userId = Auth::id();
+
         return Inertia::render('OneSerial', [
             'serial' => Serials::where('id', $id)->with('genres', 'countries')->first(),
             'user' => Auth::user(),
@@ -78,6 +80,7 @@ class SerialsController extends Controller
     public function getSerial(Request $req) {
         $input = $req->get('input');
         $serials = Serials::where('Name', 'LIKE', $input.'%')->get();
+        
         return $serials;
     }
 }

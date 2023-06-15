@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use App\Models\Folders;
 
 class RegisterController extends Controller
 {
     public function register() {
         $id = Auth::id();
+        
         return Inertia::render('Register', [
             'user' => Auth::user(),
             'folders' => Folders::where('user_id', $id)->get(),
@@ -32,10 +33,22 @@ class RegisterController extends Controller
             'password' => Hash::make($req->password),
         ]);
 
-        // $folders = Folders::insert(['Name' => 'Буду смотреть'], ['Name' => 'Избранное'], ['Name' => 'Любимые сериалы']);
-        $folderOne = Folders::create(['Name' => 'Буду смотреть', 'user_id' => $user->id]);
-        $folderTwo = Folders::create(['Name' => 'Избранное', 'user_id' => $user->id]);
-        $folderThree = Folders::create(['Name' => 'Любимые сериалы', 'user_id' => $user->id]);
+        $folders = [
+            [
+                'Name' => 'Буду смотреть',
+                'user_id' => $user->id
+            ],
+            [
+                'Name' => 'Избранное',
+                'user_id' => $user->id
+            ],
+            [
+                'Name' => 'Любимые сериалы',
+                'user_id' => $user->id
+            ],
+        ];
+
+        Folders::insert($folders);
 
         Auth::loginUsingId($user->id);
 
