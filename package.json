@@ -17,6 +17,7 @@
         "@vitejs/plugin-vue": "^4.1.0",
         "vue": "^3.2.47",
         "vue-clickaway": "^2.2.2",
+        "vue-star-rating": "^2.1.0",
         "vue3-click-away": "^1.2.4"
     }
 }

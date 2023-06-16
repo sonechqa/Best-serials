@@ -72,7 +72,13 @@
         </div>
         <div class="serialDescription__description">
             <h3>Описание сериала</h3>
-            <div>{{ serial.Description }}</div>
+            <div class="serialDescription__descriptionText">
+                {{ serial.Description }}
+            </div>
+        </div>
+        <div class="serialDescription__rate">
+            <h3>Оценить сериал</h3>
+            <SerialRating :serialRating="serial.Rating" />
         </div>
     </div>
 </template>
@@ -80,9 +86,13 @@
 <script>
 import { mixin as VueClickAway } from "vue3-click-away";
 import axios from "axios";
+import SerialRating from "./SerialRating.vue";
 
 export default {
     name: "SerialDescription",
+    components: {
+        SerialRating,
+    },
     props: {
         serial: Object,
         folders: Array,
@@ -211,8 +221,14 @@ export default {
     }
 
     &__description {
-        width: 700px;
+        width: 100%;
         line-height: 25px;
+        border-bottom: 1px inset black;
+        padding-bottom: 19px;
+    }
+
+    &__descriptionText {
+        width: 700px;
     }
 }
 </style>

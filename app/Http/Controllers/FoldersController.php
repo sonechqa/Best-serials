@@ -40,8 +40,12 @@ class FoldersController extends Controller
     }
 
     public function updateFolder(Request $req) {
-        $folder = Folders::where('id', $req->get('id'))->first();
-        $folder->update(array('Name' => $req->get('Name')));
+        $folders = Folders::where('Name', $req->get('oldName'))->get();
+        
+        foreach ($folders as $folder) {
+            $folder->Name = $req->get('newName');
+            $folder->save();
+        }
 
         return to_route('addFolder');
     }

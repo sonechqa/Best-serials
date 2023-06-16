@@ -1,7 +1,11 @@
 <template>
     <tr class="foldersTableRow">
         <td class="foldersTableRow__td">
-            <input type="text" class="foldersTableRow__name" v-model="Name" />
+            <input
+                type="text"
+                class="foldersTableRow__name"
+                v-model="newName"
+            />
         </td>
         <div class="foldersTableRow__buttons">
             <button
@@ -32,14 +36,16 @@ export default {
     },
     data() {
         return {
-            Name: this.folder.Name,
+            oldName: this.folder.Name,
+            newName: this.folder.Name,
         };
     },
     methods: {
         saveFolder() {
             router.post("/updateFolder", {
                 id: this.folder.id,
-                Name: this.Name,
+                oldName: this.oldName,
+                newName: this.newName,
             });
         },
         deleteFolder() {
