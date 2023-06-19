@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Serials extends Model
 {
@@ -23,5 +24,9 @@ class Serials extends Model
 
     public function folders() {
         return $this->belongsToMany(Folders::class);
+    }
+
+    public function ratings() {
+        return $this->hasMany(Ratings::class);
     }
 }

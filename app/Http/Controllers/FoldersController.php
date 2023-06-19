@@ -28,10 +28,18 @@ class FoldersController extends Controller
     }
 
     public function addFolders(Request $req) {
-        $users = User::all();
+        $authUser = Auth::user();
 
-        foreach ($users as $user) {
-            $folder = $user->folders()->create($req->validate([
+        if ($authUser->isAdmin == true) {
+            $users = User::all();
+
+            foreach ($users as $user) {
+                $folder = $user->folders()->create($req->validate([
+                    'Name' => ['required'],
+                ]));
+            }
+        } else {
+            $folder = $authUser->folders()->create($req->validate([
                 'Name' => ['required'],
             ]));
         }
@@ -40,18 +48,31 @@ class FoldersController extends Controller
     }
 
     public function updateFolder(Request $req) {
-        $folders = Folders::where('Name', $req->get('oldName'))->get();
+        $authUser = Auth::user();
+
+        if ($authUser->isAdmin == true) {
+            $folders = Folders::where('Name', $req->get('oldName'))->get();
         
-        foreach ($folders as $folder) {
-            $folder->Name = $req->get('newName');
-            $folder->save();
+            foreach ($folders as $folder) {
+                $folder->Name = $req->get('newName');
+                $folder->save();
+            }
+        } else {
+            $folder = Folders::where('id', $req->get('id'))->first();
+            $folder->update(array('Name' => $req->get('newName')));
         }
 
         return to_route('addFolder');
     }
 
     public function deleteFolder(Request $req) {
-        $folder = Folders::where('Name', $req->get('Name'))->delete();
+        $authUser = Auth::user();
+
+        if ($authUser->isAdmin == true) {
+            $folder = Folders::where('Name', $req->get('Name'))->delete();
+        } else {
+            $folder = Folders::where('id', $req->get('id'))->delete();
+        }
 
         return to_route('addFolder');
     }

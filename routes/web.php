@@ -49,10 +49,12 @@ Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'profile'
 Route::post('updateProfile', [\App\Http\Controllers\ProfileController::class, 'updateProfile']);
 Route::post('deleteProfile', [\App\Http\Controllers\ProfileController::class, 'deleteProfile']);
 Route::post('deletePhoto', [\App\Http\Controllers\ProfileController::class, 'deletePhoto']);
-// папки с фильмами
+// папки с сериалами
 Route::get('addFolder', [\App\Http\Controllers\FoldersController::class, 'renderFolders'])->name('addFolder');
 Route::post('addFolder', [\App\Http\Controllers\FoldersController::class, 'addFolders'])->name('addFolder');
 Route::post('updateFolder', [\App\Http\Controllers\FoldersController::class, 'updateFolder']);
 Route::post('deleteFolder', [\App\Http\Controllers\FoldersController::class, 'deleteFolder']);
 Route::post('addSerialInFolder', [\App\Http\Controllers\FoldersController::class, 'addInFolder']);
 Route::get('folders/{id}', [\App\Http\Controllers\FoldersController::class, 'renderOneFolder']);
+// рейтинг сериалов
+Route::post('rating', [\App\Http\Controllers\RatingsController::class, 'rateSerial']);

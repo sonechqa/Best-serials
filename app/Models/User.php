@@ -50,4 +50,8 @@ class User extends Authenticatable
     {
       return $this->hasMany(Folders::class);
     }
+
+    public function ratings() {
+        return $this->hasMany(Ratings::class);
+    }
 }

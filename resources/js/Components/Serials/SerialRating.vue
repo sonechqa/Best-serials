@@ -1,6 +1,6 @@
 <template class="serialRating">
     <star-rating
-        :rating="serialRating"
+        :rating="avgRating"
         :max-rating="10"
         :round-start-rating="false"
         :increment="0.5"
@@ -8,11 +8,11 @@
         :animate="true"
         :inline="true"
         :star-size="40"
-        @update:rating="rating = $event"
+        @update:rating="myRating.rating = $event"
     >
     </star-rating>
-    <div v-show="rating > 0" class="serialRating__userRating">
-        Моя оценка: {{ rating }}
+    <div v-show="myRating.rating > 0" class="serialRating__userRating">
+        Моя оценка: {{ myRating.rating }}
         <button class="serialRating__button" type="button" @click="saveRating">
             Сохранить оценку
         </button>
@@ -29,17 +29,21 @@ export default {
         StarRating,
     },
     props: {
-        serialRating: Number,
+        serialId: Number,
+        avgRating: Number,
+        userRating: Number,
     },
     data() {
         return {
-            rating: 0,
+            serialRating: this.avgRating,
+            myRating: this.userRating,
         };
     },
     methods: {
         saveRating() {
             router.post("/rating", {
-                rating: this.rating,
+                rating: this.myRating.rating,
+                serialId: this.serialId,
             });
         },
     },

@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Serials;
 use App\Models\Folders;
+use App\Models\Ratings;
 
 class SerialsController extends Controller
 {
@@ -69,11 +70,14 @@ class SerialsController extends Controller
 
     public function showSerialPage(string $id) {
         $userId = Auth::id();
+        $avgRating = Ratings::where('serial_id', $id)->avg('rating');
 
         return Inertia::render('OneSerial', [
             'serial' => Serials::where('id', $id)->with('genres', 'countries')->first(),
             'user' => Auth::user(),
             'folders' => Folders::where('user_id', $userId)->get(),
+            'avgRating' => $avgRating,
+            'userRating' => Ratings::where('user_id', $userId)->where('serial_id', $id)->first(),
         ]);
     }
 

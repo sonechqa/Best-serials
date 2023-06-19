@@ -64,10 +64,10 @@
             <span
                 class="serialDescription__rating"
                 v-bind:class="{
-                    serialDescription__greenRating: serial.Rating >= 7,
-                    serialDescription__redRating: serial.Rating < 7,
+                    serialDescription__greenRating: avgRating >= 7,
+                    serialDescription__redRating: avgRating < 7,
                 }"
-                >{{ serial.Rating }}
+                >{{ avgRating }}
             </span>
         </div>
         <div class="serialDescription__description">
@@ -78,7 +78,11 @@
         </div>
         <div class="serialDescription__rate">
             <h3>Оценить сериал</h3>
-            <SerialRating :serialRating="serial.Rating" />
+            <SerialRating
+                :serialId="serial.id"
+                :avgRating="avgRating"
+                :userRating="userRating"
+            />
         </div>
     </div>
 </template>
@@ -96,6 +100,8 @@ export default {
     props: {
         serial: Object,
         folders: Array,
+        avgRating: Number,
+        userRating: Number,
     },
     data() {
         return {

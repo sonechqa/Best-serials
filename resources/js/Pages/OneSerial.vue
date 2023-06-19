@@ -1,6 +1,11 @@
 <template>
     <MainLayout :user="user" :folders="folders">
-        <SerialDescription :serial="serial" :folders="folders" />
+        <SerialDescription
+            :serial="serial"
+            :folders="folders"
+            :avgRating="avgRating"
+            :userRating="userRating"
+        />
     </MainLayout>
 </template>
 
@@ -18,6 +23,8 @@ export default {
         serial: Object,
         user: Object,
         folders: Array,
+        avgRating: Number,
+        userRating: Number,
     },
 };
 </script>
