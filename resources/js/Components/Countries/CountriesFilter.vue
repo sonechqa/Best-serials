@@ -47,6 +47,7 @@ export default {
 .countriesFilter {
     display: flex;
     flex-direction: column;
+    max-width: 230px;
 
     &__title {
         font-weight: 700;

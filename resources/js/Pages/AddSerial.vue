@@ -39,16 +39,6 @@
                 />
             </div>
             <div class="addSerial__wrapper">
-                <label for="Rating">Рейтинг: </label>
-                <input
-                    type="number"
-                    step="0.1"
-                    id="Rating"
-                    v-model="form.Rating"
-                    class="addSerial__field"
-                />
-            </div>
-            <div class="addSerial__wrapper">
                 <label for="ReleaseYears">Годы выхода: </label>
                 <input
                     type="string"
@@ -100,7 +90,6 @@ export default {
                 Name: "",
                 Description: "",
                 Directors: "",
-                Rating: "",
                 ReleaseYears: "",
                 Genres: [],
                 Countries: [],

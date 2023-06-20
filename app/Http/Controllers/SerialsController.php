@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Serials;
 use App\Models\Folders;
 use App\Models\Ratings;
+use Illuminate\Support\Facades\DB;
 
 class SerialsController extends Controller
 {
@@ -15,7 +16,16 @@ class SerialsController extends Controller
         $id = Auth::id();
 
         return Inertia::render('AddSerial', [
-            'serials' => Serials::with('genres', 'countries')->get(),
+            'serials' => Serials::with('genres', 'countries')
+                ->leftJoinSub(
+                    Ratings::select('serial_id', DB::raw('AVG(rating) as avg_rating'))
+                        ->groupBy('serial_id'),
+                    'ratings',
+                    'serials.id',
+                    '=',
+                    'ratings.serial_id')
+                ->select('serials.*', 'ratings.avg_rating as avg_rating')
+                ->get(),
             'user' => Auth::user(),
             'folders' => Folders::where('user_id', $id)->get(),
         ]);
@@ -28,7 +38,6 @@ class SerialsController extends Controller
             'Poster' => ['required'],
             'Description' => ['required'],
             'Directors' => ['required'],
-            'Rating' => ['required'],
             'ReleaseYears' => ['required'],
           ]));
 
@@ -56,7 +65,6 @@ class SerialsController extends Controller
             array('Name' => $req->get('Name'),
             'Description' => $req->get('Description'),
             'Directors' => $req->get('Directors'),
-            'Rating' => $req->get('Rating'),
             'ReleaseYears' => $req->get('ReleaseYears'),
         ));
 

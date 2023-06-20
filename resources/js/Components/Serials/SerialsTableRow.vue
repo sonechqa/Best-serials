@@ -43,6 +43,7 @@
                 type="text"
                 class="serialsTableRow__rating"
                 v-model="Rating"
+                readonly="readonly"
             />
         </td>
         <td class="serialsTableRow__td">
@@ -97,7 +98,7 @@ export default {
             Poster: this.serial.Poster,
             Description: this.serial.Description,
             Directors: this.serial.Directors,
-            Rating: this.serial.Rating,
+            Rating: this.serial.avg_rating,
             ReleaseYears: this.serial.ReleaseYears,
             Genres: this.serial.genres,
             Countries: this.serial.countries,
@@ -112,7 +113,6 @@ export default {
                 Poster: this.image,
                 Description: this.Description,
                 Directors: this.Directors,
-                Rating: this.Rating,
                 ReleaseYears: this.ReleaseYears,
                 Genres: this.Genres.map((genre) => genre.id),
                 Countries: this.Countries.map((country) => country.id),

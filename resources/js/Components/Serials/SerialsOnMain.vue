@@ -14,12 +14,11 @@
                     v-for="(country, index) in serial.countries"
                     :key="country.id"
                 >
-                    {{ country.Name }}
-                    <span
+                    {{ country.Name
+                    }}<span
                         class="serialsOnMain__text"
                         v-if="index != serial.countries.length - 1"
-                    >
-                        ,&nbsp;
+                        >,&nbsp;
                     </span>
                 </div>
             </div>
@@ -31,12 +30,11 @@
             <div class="serialsOnMain__genres">
                 <span class="serialsOnMain__text">Жанры:&nbsp;</span>
                 <div v-for="(genre, index) in serial.genres" :key="genre.id">
-                    {{ genre.Name }}
-                    <span
+                    {{ genre.Name
+                    }}<span
                         class="serialsOnMain__text"
                         v-if="index != serial.genres.length - 1"
-                    >
-                        ,&nbsp;
+                        >,&nbsp;
                     </span>
                 </div>
             </div>
@@ -44,11 +42,11 @@
         <p
             class="serialsOnMain__rating"
             v-bind:class="{
-                serialsOnMain__greenRating: serial.Rating >= 7,
-                serialsOnMain__redRating: serial.Rating < 7,
+                serialsOnMain__greenRating: serial.avg_rating >= 7,
+                serialsOnMain__redRating: serial.avg_rating < 7,
             }"
         >
-            {{ serial.Rating }}
+            {{ serial.avg_rating }}
         </p>
     </div>
 </template>
@@ -75,7 +73,7 @@ export default {
     }
 
     &__img {
-        width: 160px;
+        width: 150px;
         height: 220px;
     }
 
