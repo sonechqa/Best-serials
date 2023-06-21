@@ -20,12 +20,18 @@
                 Показать
             </button>
         </div>
-        <div>
+        <div class="allSerials__listOfSerials" v-if="serials.length > 0">
             <SerialsOnMain
                 :serials="serials"
                 :genres="genres"
                 :countries="countries"
             />
+        </div>
+        <div class="allSerials__noMatches" v-else>
+            <h3 class="allSerials__subtitle">
+                Простите, совпадения не найдены.<br />Попробуйте изменить
+                запрос.
+            </h3>
         </div>
     </div>
 </template>
@@ -93,6 +99,19 @@ export default {
         border-radius: 5px;
         background-color: rgb(126, 202, 72);
         padding: 5px;
+    }
+
+    &__listOfSerials {
+        width: 100%;
+    }
+
+    &__noMatches {
+        margin: auto;
+        text-align: center;
+    }
+
+    &__subtitle {
+        font-weight: 400;
     }
 }
 </style>
