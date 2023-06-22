@@ -103,6 +103,7 @@ export default {
 <style scoped lang="scss">
 .selectCountries {
     position: relative;
+    width: min-content;
 
     &__wrapper {
         position: relative;
@@ -153,7 +154,7 @@ export default {
         background-color: white;
         position: absolute;
         z-index: 5;
-        width: 99%;
+        width: 100%;
     }
 
     &__variants {

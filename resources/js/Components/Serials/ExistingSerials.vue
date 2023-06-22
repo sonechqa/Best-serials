@@ -50,6 +50,7 @@ export default {
         margin-top: 30px;
         width: 90%;
         margin-left: 40px;
+        margin-bottom: 50px;
     }
 
     &__nameOfColumn {

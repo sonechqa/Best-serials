@@ -35,11 +35,23 @@ class SerialsController extends Controller
     {
         $serial = Serials::create($req->validate([
             'Name' => ['required'],
-            'Poster' => ['required'],
             'Description' => ['required'],
             'Directors' => ['required'],
             'ReleaseYears' => ['required'],
           ]));
+
+        if ($req->Poster) {
+            $imageFolderPath = "images/";
+            $base64Image = explode(";base64,", $req->Poster);
+            $explodeImage = explode("image/", $base64Image[0]);
+            $imageType = $explodeImage[1];
+            $image_base64 = base64_decode($base64Image[1]);
+            $file = $imageFolderPath . uniqid() . '.' . $imageType;
+            file_put_contents($file, $image_base64);
+            $serial->Poster = $file;
+        }
+
+        $serial->save();
 
         $serial->genres()->attach($req->get('Genres'));
         $serial->countries()->attach($req->get('Countries'));

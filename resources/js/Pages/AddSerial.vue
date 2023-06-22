@@ -14,10 +14,11 @@
             <div class="addSerial__wrapper">
                 <label for="Poster">Постер: </label>
                 <input
-                    type="text"
+                    type="file"
+                    accept="image/*"
                     id="Poster"
-                    v-model="form.Poster"
                     class="addSerial__field"
+                    @change="handleSelectedPoster"
                 />
             </div>
             <div class="addSerial__wrapper">
@@ -94,13 +95,32 @@ export default {
                 Genres: [],
                 Countries: [],
             },
+            image: "",
         };
     },
     methods: {
+        handleSelectedPoster(event) {
+            var files = event.target.files;
+
+            if (!files.length) {
+                return;
+            }
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = (e) => {
+                this.image = e.target.result;
+            };
+
+            fileReader.readAsDataURL(files[0]);
+        },
         sendSerial() {
-            const newForm = { ...form };
-            newForm.Genres = form.Genres.map((genre) => genre.id);
-            newForm.Countries = form.Countries.map((country) => country.id);
+            const newForm = { ...this.form };
+            newForm.Genres = this.form.Genres.map((genre) => genre.id);
+            newForm.Countries = this.form.Countries.map(
+                (country) => country.id
+            );
+            newForm.Poster = this.image;
             router.post("/addSerial", newForm);
         },
     },
@@ -125,6 +145,7 @@ export default {
 
     &__field {
         outline: none;
+        cursor: pointer;
     }
 
     &__wrapperForGenres,
