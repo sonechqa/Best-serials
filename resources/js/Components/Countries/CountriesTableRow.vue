@@ -1,7 +1,7 @@
 <template>
     <tr class="countriesTableRow">
         <td class="countriesTableRow__td">
-            <input type="text" v-model="Name" class="countriesTableRow__name" />
+            <input type="text" v-model="Name" />
         </td>
         <div class="countriesTableRow__buttons">
             <button
@@ -63,10 +63,6 @@ export default {
         height: 40px;
     }
 
-    &__name {
-        outline: none;
-    }
-
     &__buttons {
         display: flex;
         position: absolute;
@@ -77,18 +73,30 @@ export default {
     &__saveCountry {
         margin-left: 10px;
         background-color: rgb(83, 184, 221);
-        border: none;
         border-radius: 5px;
-        cursor: pointer;
+
+        @media screen and (max-width: 365px) {
+            padding: 0px;
+        }
+
+        @media screen and (max-width: 330px) {
+            margin-left: 5px;
+        }
     }
 
     &__deleteCountry {
         margin-left: 10px;
         padding: 0px 15px;
         background-color: rgb(58, 198, 62);
-        border: none;
         border-radius: 5px;
-        cursor: pointer;
+
+        @media screen and (max-width: 365px) {
+            padding: 0px 5px;
+        }
+
+        @media screen and (max-width: 330px) {
+            margin-left: 5px;
+        }
     }
 }
 </style>

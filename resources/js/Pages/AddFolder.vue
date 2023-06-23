@@ -4,12 +4,7 @@
         <form @submit.prevent="postFolder" class="addFolder__form">
             <div class="addFolder__wrapper">
                 <label for="Name">Название: </label>
-                <input
-                    type="text"
-                    id="Name"
-                    v-model="Name"
-                    class="addFolder__field"
-                />
+                <input type="text" id="Name" v-model="Name" />
             </div>
             <button class="addFolder__button">Добавить</button>
         </form>
@@ -61,13 +56,7 @@ export default {
         margin-bottom: 20px;
     }
 
-    &__field {
-        outline: none;
-    }
-
     &__button {
-        cursor: pointer;
-        border: none;
         border-radius: 5px;
         background-color: rgb(225, 125, 53);
         padding: 8px;

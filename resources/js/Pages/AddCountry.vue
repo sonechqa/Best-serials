@@ -4,12 +4,7 @@
         <form @submit.prevent="postCountry" class="addCountry__form">
             <div class="addCountry__wrapper">
                 <label for="Name">Название: </label>
-                <input
-                    type="text"
-                    id="Name"
-                    v-model="Name"
-                    class="addCountry__field"
-                />
+                <input type="text" id="Name" v-model="Name" />
             </div>
             <button class="addCountry__button">Добавить</button>
         </form>
@@ -62,13 +57,7 @@ export default {
         margin-bottom: 20px;
     }
 
-    &__field {
-        outline: none;
-    }
-
     &__button {
-        cursor: pointer;
-        border: none;
         border-radius: 5px;
         background-color: rgb(225, 125, 53);
         padding: 8px;

@@ -156,8 +156,6 @@ export default {
     }
 
     &__addToFolder {
-        cursor: pointer;
-        border: none;
         border-radius: 5px;
         padding: 10px;
         background-color: rgb(186, 174, 174);

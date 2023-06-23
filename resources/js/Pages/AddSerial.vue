@@ -4,12 +4,7 @@
         <form @submit.prevent="sendSerial" class="addSerial__form">
             <div class="addSerial__wrapper">
                 <label for="Name">Название: </label>
-                <input
-                    type="text"
-                    id="Name"
-                    v-model="form.Name"
-                    class="addSerial__field"
-                />
+                <input type="text" id="Name" v-model="form.Name" />
             </div>
             <div class="addSerial__wrapper">
                 <label for="Poster">Постер: </label>
@@ -17,7 +12,7 @@
                     type="file"
                     accept="image/*"
                     id="Poster"
-                    class="addSerial__field"
+                    class="addSerial__poster"
                     @change="handleSelectedPoster"
                 />
             </div>
@@ -27,17 +22,11 @@
                     type="text"
                     id="Description"
                     v-model="form.Description"
-                    class="addSerial__field"
                 />
             </div>
             <div class="addSerial__wrapper">
                 <label for="Directors">Режиссёры: </label>
-                <input
-                    type="text"
-                    id="Directors"
-                    v-model="form.Directors"
-                    class="addSerial__field"
-                />
+                <input type="text" id="Directors" v-model="form.Directors" />
             </div>
             <div class="addSerial__wrapper">
                 <label for="ReleaseYears">Годы выхода: </label>
@@ -45,7 +34,6 @@
                     type="string"
                     id="ReleaseYears"
                     v-model="form.ReleaseYears"
-                    class="addSerial__field"
                 />
             </div>
             <div class="addSerial__wrapper addSerial__wrapperForGenres">
@@ -143,8 +131,7 @@ export default {
         }
     }
 
-    &__field {
-        outline: none;
+    &__poster {
         cursor: pointer;
     }
 
@@ -163,8 +150,6 @@ export default {
     }
 
     &__button {
-        cursor: pointer;
-        border: none;
         border-radius: 5px;
         background-color: rgb(225, 125, 53);
         padding: 8px;

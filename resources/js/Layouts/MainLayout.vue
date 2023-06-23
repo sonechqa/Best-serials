@@ -21,18 +21,23 @@
             <div></div>
             <slot />
         </article>
+        <footer>
+            <Footer />
+        </footer>
     </main>
 </template>
 
 <script>
 import Header from "../Components/Header.vue";
 import { Link } from "@inertiajs/vue3";
+import Footer from "../Components/Footer.vue";
 
 export default {
     name: "MainLayout",
     components: {
         Header,
         Link,
+        Footer,
     },
     props: {
         user: Object,

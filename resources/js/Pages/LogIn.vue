@@ -73,6 +73,10 @@ export default {
         display: flex;
         flex-direction: column;
         background-color: rgb(239, 231, 231);
+
+        @media screen and (max-width: 1100px) {
+            width: 80vw;
+        }
     }
 
     &__title {
@@ -94,10 +98,20 @@ export default {
     }
 
     &__field {
-        outline: none;
         width: 250px;
         height: 40px;
         font-size: 18px;
+
+        @media screen and (max-width: 550px) {
+            width: 200px;
+            height: 35px;
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 360px) {
+            width: 170px;
+            height: 30px;
+        }
     }
 
     &__error {
@@ -106,9 +120,7 @@ export default {
     }
 
     &__button {
-        border: none;
         border-radius: 5px;
-        cursor: pointer;
         background-color: rgb(157, 151, 151);
         padding: 10px 30px;
         font-size: 16px;

@@ -24,19 +24,10 @@
             />
         </td>
         <td class="serialsTableRow__td">
-            <textarea
-                cols="50"
-                rows="7"
-                v-model="Description"
-                class="serialsTableRow__textarea"
-            ></textarea>
+            <textarea cols="50" rows="7" v-model="Description"></textarea>
         </td>
         <td class="serialsTableRow__td">
-            <textarea
-                rows="5"
-                v-model="Directors"
-                class="serialsTableRow__textarea"
-            ></textarea>
+            <textarea rows="5" v-model="Directors"></textarea>
         </td>
         <td class="serialsTableRow__td">
             <input
@@ -165,10 +156,6 @@ export default {
         cursor: pointer;
     }
 
-    &__textarea {
-        resize: none;
-    }
-
     &__rating {
         width: 60px;
     }
@@ -188,18 +175,14 @@ export default {
         margin-left: 10px;
         padding: 5px;
         background-color: rgb(83, 184, 221);
-        border: none;
         border-radius: 5px;
-        cursor: pointer;
     }
 
     &__deleteSerial {
         margin-left: 10px;
         padding: 10px;
         background-color: rgb(58, 198, 62);
-        border: none;
         border-radius: 5px;
-        cursor: pointer;
     }
 }
 </style>

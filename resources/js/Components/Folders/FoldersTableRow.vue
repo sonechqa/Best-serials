@@ -1,11 +1,7 @@
 <template>
     <tr class="foldersTableRow">
         <td class="foldersTableRow__td">
-            <input
-                type="text"
-                class="foldersTableRow__name"
-                v-model="newName"
-            />
+            <input type="text" v-model="newName" />
         </td>
         <div class="foldersTableRow__buttons">
             <button
@@ -69,10 +65,6 @@ export default {
         height: 40px;
     }
 
-    &__name {
-        outline: none;
-    }
-
     &__buttons {
         display: flex;
         position: absolute;
@@ -83,18 +75,30 @@ export default {
     &__saveFolder {
         margin-left: 10px;
         background-color: rgb(83, 184, 221);
-        border: none;
         border-radius: 5px;
-        cursor: pointer;
+
+        @media screen and (max-width: 360px) {
+            padding: 0px;
+        }
+
+        @media screen and (max-width: 330px) {
+            margin-left: 5px;
+        }
     }
 
     &__deleteFolder {
         margin-left: 10px;
         padding: 0px 15px;
         background-color: rgb(58, 198, 62);
-        border: none;
         border-radius: 5px;
-        cursor: pointer;
+
+        @media screen and (max-width: 360px) {
+            padding: 0px 5px;
+        }
+
+        @media screen and (max-width: 330px) {
+            margin-left: 5px;
+        }
     }
 }
 </style>

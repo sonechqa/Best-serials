@@ -94,8 +94,6 @@ export default {
     &__button {
         width: min-content;
         height: min-content;
-        cursor: pointer;
-        border: none;
         border-radius: 5px;
         background-color: rgb(126, 202, 72);
         padding: 5px;

@@ -147,7 +147,6 @@ export default {
         color: inherit;
         border: 1px solid transparent;
         border-radius: inherit;
-        outline: none;
     }
 
     &__button {
@@ -156,7 +155,6 @@ export default {
         background-repeat: no-repeat;
         background-position: center;
         width: 50px;
-        cursor: pointer;
         background-color: transparent;
         overflow: hidden;
         padding: 0;

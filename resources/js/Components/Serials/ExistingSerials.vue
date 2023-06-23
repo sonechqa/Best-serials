@@ -2,6 +2,10 @@
     <h2 class="existingSerials__title">
         Заметили ошибку? Нажмите на ячейку и исправьте!
     </h2>
+    <h4 class="existingSerials__subtitle">
+        Обратите внимание на то, что вы не можете редактировать рейтинг сериала.
+        Он выссчитывается автоматически на основе оценок пользователей.
+    </h4>
     <table class="existingSerials__table">
         <thead>
             <tr>
@@ -41,7 +45,8 @@ export default {
 
 <style scoped lang="scss">
 .existingSerials {
-    &__title {
+    &__title,
+    &__subtitle {
         text-align: center;
     }
 

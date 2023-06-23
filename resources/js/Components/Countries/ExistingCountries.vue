@@ -36,6 +36,11 @@ export default {
 .existingCountries {
     &__title {
         text-align: center;
+
+        @media screen and (max-width: 380px) {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
     }
 
     &__table {
@@ -43,6 +48,19 @@ export default {
         margin-top: 30px;
         width: 30%;
         margin-left: 50px;
+        margin-bottom: 50px;
+
+        @media screen and (max-width: 425px) {
+            margin-left: 35px;
+        }
+
+        @media screen and (max-width: 400px) {
+            margin-left: 20px;
+        }
+
+        @media screen and (max-width: 380px) {
+            margin-left: 10px;
+        }
     }
 
     &__nameOfColumn {

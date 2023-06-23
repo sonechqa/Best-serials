@@ -1,7 +1,7 @@
 <template>
     <tr class="genresTableRow">
         <td class="genresTableRow__td">
-            <input type="text" v-model="Name" class="genresTableRow__name" />
+            <input type="text" v-model="Name" />
         </td>
         <div class="genresTableRow__buttons">
             <button
@@ -62,10 +62,6 @@ export default {
         height: 40px;
     }
 
-    &__name {
-        outline: none;
-    }
-
     &__buttons {
         display: flex;
         position: absolute;
@@ -76,18 +72,30 @@ export default {
     &__saveGenre {
         margin-left: 10px;
         background-color: rgb(83, 184, 221);
-        border: none;
         border-radius: 5px;
-        cursor: pointer;
+
+        @media screen and (max-width: 360px) {
+            padding: 0px;
+        }
+
+        @media screen and (max-width: 330px) {
+            margin-left: 5px;
+        }
     }
 
     &__deleteGenre {
         margin-left: 10px;
         padding: 0px 15px;
         background-color: rgb(58, 198, 62);
-        border: none;
         border-radius: 5px;
-        cursor: pointer;
+
+        @media screen and (max-width: 365px) {
+            padding: 0px 5px;
+        }
+
+        @media screen and (max-width: 330px) {
+            margin-left: 5px;
+        }
     }
 }
 </style>

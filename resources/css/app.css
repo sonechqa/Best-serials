@@ -23,4 +23,10 @@ input {
 
 textarea {
     outline: none;
+    resize: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
 }

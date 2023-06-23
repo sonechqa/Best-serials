@@ -36,7 +36,7 @@
                     <input
                         type="file"
                         accept="image/*"
-                        class="profile__file profile__field"
+                        class="profile__file"
                         @change="handleSelectedImage"
                     />
                     <button
@@ -49,25 +49,15 @@
                     </button>
                 </div>
                 <div>
-                    <div class="profile__wrapper">
+                    <div class="profile__wrap">
                         <label for="name">Имя:&nbsp;</label>
-                        <input
-                            type="text"
-                            id="name"
-                            v-model="user.name"
-                            class="profile__field"
-                        />
+                        <input type="text" id="name" v-model="user.name" />
                     </div>
-                    <div class="profile__wrapper">
+                    <div class="profile__wrap">
                         <label for="email">Почта:&nbsp;</label>
-                        <input
-                            type="text"
-                            id="email"
-                            v-model="user.email"
-                            class="profile__field"
-                        />
+                        <input type="text" id="email" v-model="user.email" />
                     </div>
-                    <div class="profile__wrapper">
+                    <div class="profile__wrap">
                         <label for="birth">Дата рождения:&nbsp;</label>
                         <input
                             type="date"
@@ -75,7 +65,6 @@
                             min="1930-01-01"
                             max="2016-12-31"
                             v-model="user.DateOfBirth"
-                            class="profile__field"
                         />
                     </div>
                     <div class="profile__sex">
@@ -86,9 +75,8 @@
                                 id="female"
                                 value="Женский"
                                 v-model="user.Sex"
-                                class="profile__field"
                             />
-                            <label for="female">Женский</label>
+                            <label for="female">Жен.</label>
                         </div>
                         <div>
                             <input
@@ -96,9 +84,8 @@
                                 id="male"
                                 value="Мужской"
                                 v-model="user.Sex"
-                                class="profile__field"
                             />
-                            <label for="male">Мужской</label>
+                            <label for="male">Муж.</label>
                         </div>
                     </div>
                 </div>
@@ -204,11 +191,25 @@ export default {
     &__container {
         background-color: white;
         padding: 50px;
+
+        @media screen and (max-width: 1280px) {
+            width: 70vw;
+        }
+
+        @media screen and (max-width: 430px) {
+            width: 60vw;
+        }
     }
 
     &__wrapper {
         display: flex;
         margin-bottom: 180px;
+
+        @media screen and (max-width: 670px) {
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 100px;
+        }
     }
 
     &__avatar {
@@ -216,25 +217,32 @@ export default {
         height: 220px;
         margin-right: 50px;
         text-align: center;
+
+        @media screen and (max-width: 710px) {
+            margin-right: 20px;
+        }
+
+        @media screen and (max-width: 670px) {
+            margin-bottom: 100px;
+        }
     }
 
     &__img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+
+        @media screen and (max-width: 1100px) {
+            width: 80%;
+            height: 80%;
+        }
     }
 
     &__file {
         cursor: pointer;
     }
 
-    &__field {
-        outline: none;
-    }
-
     &__button {
-        cursor: pointer;
-        border: none;
         border-radius: 5px;
         padding: 10px;
     }
@@ -250,8 +258,13 @@ export default {
         }
     }
 
-    &__wrapper {
+    &__wrap {
         margin-bottom: 15px;
+
+        @media screen and (max-width: 380px) {
+            display: flex;
+            flex-direction: column;
+        }
     }
 
     &__sex {
@@ -262,6 +275,12 @@ export default {
         display: flex;
         justify-content: space-around;
         margin-top: 150px;
+
+        @media screen and (max-width: 565px) {
+            flex-direction: column;
+            width: 50%;
+            margin: auto;
+        }
     }
 
     &__save {
@@ -272,6 +291,10 @@ export default {
             background-color: rgb(124, 229, 124);
             transition: background-color 0.3s;
         }
+
+        @media screen and (max-width: 565px) {
+            margin-bottom: 10px;
+        }
     }
 
     &__logout {
@@ -281,6 +304,10 @@ export default {
         &:hover {
             background-color: rgb(109, 183, 236);
             transition: background-color 0.3s;
+        }
+
+        @media screen and (max-width: 565px) {
+            margin-bottom: 10px;
         }
     }
 

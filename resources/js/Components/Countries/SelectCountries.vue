@@ -24,7 +24,6 @@
                 <li class="selectCountries__li">
                     <input
                         type="string"
-                        class="selectCountries__field"
                         v-model="inputValue"
                         @focus="showVariants"
                         @blur="hideVariants"
@@ -141,10 +140,6 @@ export default {
     &__cross {
         width: 8px;
         height: 8px;
-    }
-
-    &__field {
-        outline: none;
     }
 
     &__selectCountry {
